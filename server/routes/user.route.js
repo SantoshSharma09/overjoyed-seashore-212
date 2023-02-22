@@ -1,3 +1,4 @@
+
 const express=require("express")
 const {usermodel}=require("../modals/user.modal")
 const jwt=require("jsonwebtoken")
@@ -81,3 +82,9 @@ userrouter.post("/login",async(req,res)=>{
 module.exports={
   userrouter
 }
+
+
+
+
+
+

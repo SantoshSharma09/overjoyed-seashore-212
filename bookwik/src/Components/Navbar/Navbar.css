@@ -1,0 +1,153 @@
+#Navbar{
+    background-color: #f7f7f7;
+    position: sticky;
+    top:0px;
+    z-index: 999;
+}
+
+#Navbar-Top{
+    display: flex;
+    justify-content: space-between;
+  padding: 20px 100px;
+    flex-direction: row;
+    /* border: 2px solid coral; */
+    /* background-color: yellowgreen; */
+    color: #6c757d;
+    background-color: #f7f7f7;
+}
+.location-icon{
+    font-size: 5px;
+}
+.wishlist-icon{
+    width: 20px;
+}
+#Navbar-TopLeft,#Navbar-TopRight{
+    display:flex; align-items:center; gap:12px; font-size: 13px;
+    font-weight: 400;
+}
+#Navbar-TopLeft span:hover{
+    cursor: pointer;
+}
+#Navbar-TopLeft span{
+    border-right: 1px solid #6c757d;
+    padding-right: 5px;
+}
+.location-icon{
+    width: 20px;
+}
+#Nav-mid{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 100px;
+   /* border: 2px solid gray; */
+   align-items: center;
+}
+
+
+#logo2{
+    width: 230px;
+}
+#SearchInputBox{
+    width: 800px;
+    font-size: 15px;
+    padding: 9px;
+    border: 5px solid gray;
+    border-left: none;
+}
+#Nav-bottom{
+    display: flex;
+    justify-content: space-between;
+    gap:0px 5px;
+    border: 1px solid yellowgreen;
+    padding: 10px 100px;
+}
+#Nav-bottom span{
+    font-weight: 500;
+    font-size: 16px;
+    color:#6c757d ;
+    border-right: 1px solid #6c757d;
+    padding-right: 10px;
+}
+
+@media (max-width: 1026px) and (min-width: 770px){
+    #Navbar-Top{
+        padding: 15px 0px;
+        
+    }
+    .logo{
+        width: 250px;
+    }
+    .location-icon,.wishlist-icon{
+        width: 15px;
+    }
+    #Nav-mid{
+        padding: 10px 10px;
+    } 
+    #SearchInputBox{
+        width: 550px;
+    }
+    #Nav-bottom{
+        padding: 10px 0px;
+    }
+}
+@media (max-width: 770px) and (min-width: 430px){
+    #Navbar-Top{
+        padding: 15px 0px;
+    }
+    .logo{
+        width: 150px;
+    }
+    .location-icon,.wishlist-icon{
+        width: 30px;
+    }
+    #Navbar-TopLeft,#Navbar-TopRight{
+        display: flex;
+        gap:100px;
+    }
+    #Navbar-TopLeft span{
+        border: none;
+    }
+    #SearchInputBox{
+        width: 650px;
+        position: relative;
+        
+    }
+    #Nav-mid{
+        padding: 10px 10px;
+        margin: auto;
+    }
+    #Nav-bottom{
+        display: none;
+    }
+}
+@media (max-width: 430px) and (min-width: 250px){
+    #Navbar-Top{
+        padding: 15px 0px;
+    }
+    .logo{
+        width: 130px;
+        padding: 0 10px;
+    }
+    .location-icon,.wishlist-icon{
+        width: 30px;
+    }
+    #Navbar-TopLeft,#Navbar-TopRight{
+        display: flex;
+        gap:10px;
+    }
+    #Navbar-TopLeft span{
+        border: none;
+    }
+    #SearchInputBox{
+        width: 330px;
+    }
+    #Nav-mid{
+        padding: 10px 10px;
+    }
+    #inputBox{
+        width: 95%;
+    }
+    #Nav-bottom{
+        display: none;
+    }
+}

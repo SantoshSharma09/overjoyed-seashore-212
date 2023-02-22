@@ -1,0 +1,35 @@
+ul{
+    list-style: none;
+    text-align: left;
+    font-size: 12px;
+}
+li:hover{
+    text-decoration: underline;
+    cursor: pointer;
+   
+    padding: 3px;
+}
+li{
+    padding: 6px 0px;
+}
+.CompleteFooter{
+    padding: 20px 0px;
+}
+.headElememt{
+    padding: 5px 0px;
+    font-size: 15px;
+    font-weight: 450;
+    color: black;
+}
+#Footer-bottom{
+    padding:30px 100px;
+}
+#emailInput,#storeInput{
+    width:300px
+}
+@media (max-width: 770px) and (min-width: 200px){
+    #Footer-bottom{
+        padding:30px 00px;
+    }
+   
+}

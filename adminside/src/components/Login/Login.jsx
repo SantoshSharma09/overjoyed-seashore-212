@@ -3,6 +3,7 @@ import "./Login.css"
 import admin_img from "../resources/admin_image.jpg"
 import images_logo_admin from "../resources/logo_nem.jpg"
 import { useNavigate } from "react-router-dom";
+// this is login page
 
 const Login=()=>{
 

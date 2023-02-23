@@ -10,17 +10,22 @@ const LoginPage = () => {
     setObj({...obj,[e.target.name]:e.target.value})
   }
   const {email,pass} = obj
-  // const [fname,setfname]=useState("")
-  // const [lname,setlname]=useState("")
-  // const [email,setemail]=useState("")
-  // const [cemail,setcemail]=useState("")
-  // const [pass,setpass]=useState("")
-  // const [cpass,setcpass]=useState("")
-  // const [sq,setsq]=useState("")
-  // const [sa,setsa]=useState("")
 
   const handleClick =()=>{
     console.log(obj)
+    fetch("http://localhost:8000/users/login",{
+      method:"POST",
+      body:JSON.stringify(obj),
+      headers:{
+          "Content-type":"application/json"
+      },
+     
+  }).then(res=>res.json()).then((res)=>{
+    console.log(res.msg)
+    alert(res.msg)
+    
+  })
+    
   }
   return (
     <Box id='LoginPage'  >

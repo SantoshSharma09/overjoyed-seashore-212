@@ -1,10 +1,11 @@
-import { Box, Hide, Image, Show } from '@chakra-ui/react';
+import { Box, Hide, Show } from '@chakra-ui/react';
 import {Link} from "react-router-dom"
 import React from 'react'
 import "./Navbar.css"
 import DrawerExample from './Drawer';
 import DrawerExample2 from './Drawer2';
-import Menu1 from './Menu1';
+import NavInputMenu from './NavInputMenu';
+import AccountMenu from './AccountMenu';
 const Navbar = () => {
   return (
     <>
@@ -26,10 +27,13 @@ const Navbar = () => {
     </Box>
     <Show breakpoint='(max-width: 770px)' > 
         
-        <img  className='logo'  src="https://user-images.githubusercontent.com/107903370/220422422-7ee82cb2-7889-4ace-96aa-f5df0be687fd.jpeg" alt="logo" />
+     <Link to="/" >   <img  className='logo'  src="https://user-images.githubusercontent.com/107903370/220422422-7ee82cb2-7889-4ace-96aa-f5df0be687fd.jpeg" alt="logo" /> </Link>
          </Show>
     <Box id='Navbar-TopRight' >
-    <Hide below="md">  <span style={{display:"flex",gap:"5px"}} > <Image src="https://user-images.githubusercontent.com/107903370/220407239-b9fdd3f7-4a4e-4443-9a90-f140ca9dc53b.png" w="4" h="4" /> MY ACCOUNT</span> </Hide>
+    <Hide below="md">
+        
+        <AccountMenu/>
+        </Hide>
        <span style={{display:"flex",gap:"5px"}}> <img className='wishlist-icon' src="https://user-images.githubusercontent.com/107903370/220409397-c7ac7310-071b-4408-98eb-540a616298a5.png" alt="wishlist-icon-logo" /> <Hide breakpoint='(max-width: 770px)' >  WISHLIST</Hide></span>
        <Show breakpoint='(max-width: 770px)'>
        
@@ -42,9 +46,10 @@ const Navbar = () => {
 
     {/* Nav-mid Starts here */}
     <Box id='Nav-mid'>
-    <Hide breakpoint='(max-width: 770px)' >  <img  id="logo2" alt="Nav-mid-logo" src="https://user-images.githubusercontent.com/107903370/220422422-7ee82cb2-7889-4ace-96aa-f5df0be687fd.jpeg"  /> </Hide>
+    <Hide breakpoint='(max-width: 770px)' > 
+    <Link to="/" > <img  id="logo2" alt="Nav-mid-logo" src="https://user-images.githubusercontent.com/107903370/220422422-7ee82cb2-7889-4ace-96aa-f5df0be687fd.jpeg"  /> </Link> </Hide>
     <Box  id="inputBox" style={{border:"2px solid black",display:"flex"}} >
-      <Menu1/>
+      <NavInputMenu/>
     <input   id="SearchInputBox" type="text" placeholder='input bar' style={{border:"1px solid black"}} />
     <button>
     <img src="https://user-images.githubusercontent.com/107903370/220546869-01f44250-323f-4c63-982f-d30a9406ae9a.png" alt="search-icon" style={{width:"37px" ,padding:"0 6px"}} />

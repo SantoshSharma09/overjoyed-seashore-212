@@ -4,8 +4,8 @@ import "./Footer.css"
 const Footer = () => {
 
   return (
-   <Box backgroundColor="" color="#6c757d"fontSize="15px" className="CompleteFooter" >
-    
+   <Box backgroundColor="#f7f7f7" color="#6c757d"fontSize="15px" className="CompleteFooter" >
+    <hr style={{width:"85%",margin:"auto",color:"black",height:"1px",backgroundColor:"black"}} />
     <SimpleGrid columns={{ base: 1, sm: 2, md: 2, lg: 4 }}  spacing={8}>
         <VStack>
             <ul>

@@ -3,12 +3,15 @@ require('dotenv').config()
 const {connection}=require("./db")
 const {bookRouter}=require("./routes/book.route")
 const {userrouter}=require("./routes/user.route")
-
+const cors=require("cors")
 
 
 const app=express()
 app.use(express.json())
 
+app.use(cors({
+    origin:"*"
+}))
 
 app.use("/users",userrouter)
 app.use("/booktest",bookRouter)

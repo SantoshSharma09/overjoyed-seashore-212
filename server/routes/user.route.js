@@ -1,20 +1,20 @@
 
 const express=require("express")
-const {usermodel}=require("../modals/user.modal")
+const {Usermodel}=require("../modals/user.modal")
 const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt")
-const {user_field_validator}=require("../middleware/ufieldvalidator.middleware")
+
 
 const userrouter=express.Router()
 
 
 
 //routes for sign up
-userrouter.post("/register",user_field_validator, async (req,res)=>{
-const {f_name,l_name,email,confirm_email,password,confirm_pass,security_question,security_answer}=req.body
-const userexist=await usermodel.findOne({email:email})
+userrouter.post("/register",async (req,res)=>{
+const {f_name,l_name,email,confirm_email,pass,confirm_pass,security_question,security_answer}=req.body
+const userexist=await Usermodel.findOne({email:email})
 try{
-    bcrypt.hash((password,confirm_pass), 5, async (err, hash)=>{
+    bcrypt.hash((pass,confirm_pass), 5, async (err, hash)=>{
       if(err)
       {
         res.send({"msg":"something went wrong","error":err.message})
@@ -25,9 +25,9 @@ try{
         res.send({"msg":"user already exist with this email"})
       }
       else{
-      if(password==confirm_pass && email==confirm_email)
+      if(pass==confirm_pass && email==confirm_email)
       {
-        const user=new usermodel({f_name,l_name,email,confirm_email,password:hash,confirm_pass:hash,security_question,security_answer})
+        const user=new Usermodel({f_name,l_name,email,confirm_email,pass:hash,confirm_pass:hash,security_question,security_answer})
         await user.save()
         res.send({"msg":"user registered"})
       }
@@ -47,17 +47,19 @@ catch(err)
 
 
 
-//routes for login
+
+
+//login
 userrouter.post("/login",async(req,res)=>{
-  const {email,password}=req.body
+  const {email,pass}=req.body
  try{
-      const user=await usermodel.find({email})
+      const user=await Usermodel.find({email})
       if(user.length>0){
-          // console.log(user)
-          bcrypt.compare(password, user[0].password, (err, result)=>{
+          console.log(user)
+          bcrypt.compare(pass, user[0].pass, (err, result)=>{
              if(result)
              {
-             let token=jwt.sign({project:"practise"}, 'neha', { expiresIn: '1h' });
+             let token=jwt.sign({backend:"javascript"}, 'aarti', { expiresIn: '1h' });
              res.send({"msg":"login success","token":token})
              }
              else{
@@ -74,8 +76,6 @@ userrouter.post("/login",async(req,res)=>{
   res.send({"msg":"something went wrong","error":err.message})
  }
 })
-
-
 
 
 

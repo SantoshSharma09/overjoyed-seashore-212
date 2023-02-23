@@ -11,7 +11,7 @@ app.use(express.json())
 
 
 app.use("/users",userrouter)
-app.use("/booktest",bookRouter)
+app.use("/books",bookRouter)
 
 
 

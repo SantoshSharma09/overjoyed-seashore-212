@@ -1,0 +1,32 @@
+#LoginPage{
+    width: 35%;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px 25px;
+    border-radius: 10px;
+}
+
+@media (max-width: 1026px) and (min-width: 770px){
+    #LoginPage{
+        width: 48%;
+        margin: auto;
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 770px) and (min-width: 430px){
+    #LoginPage{
+        width: 65%;
+        margin: auto;
+        margin-bottom: 50px;
+    }
+}
+@media (max-width: 430px) and (min-width: 250px){
+    #LoginPage{
+        width: 85%;
+        margin: auto;
+        margin-bottom: 50px;
+    }
+}

@@ -39,6 +39,16 @@
     text-align: left;
 }
 
+@media (max-width: 770px) and (min-width: 200px) {
+    .sidebar {
+        display: none;
+    }
+
+    .prod_container {
+        width: 100%;
+    }
+}
+
 .special_sections {
     /* border: 1px solid; */
     margin: auto;

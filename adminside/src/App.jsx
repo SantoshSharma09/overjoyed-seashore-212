@@ -1,4 +1,5 @@
 import Login from "./components/Login/Login";
+import Allrouter from "./components/routes/Allrouter";
 
 
 
@@ -6,8 +7,7 @@ import Login from "./components/Login/Login";
 function App() {
   return (
     <div className="App">
-    <Login/>
-    {/* <Register/> */}
+      <Allrouter/>
     </div>
   );
 }

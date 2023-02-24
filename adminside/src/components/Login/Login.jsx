@@ -31,7 +31,7 @@ const Login=()=>{
             {
                 console.log(res)
                 console.log(email)
-                alert("Login Successful")
+                alert(res.msg)
                 localStorage.setItem("token",res.token)
                 localStorage.setItem("admin_email",email)
                 navigate("/dashboard")

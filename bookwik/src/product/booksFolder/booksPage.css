@@ -1,0 +1,10 @@
+#All_books_box {
+    width: 80%;
+    margin: auto;
+}
+
+@media (max-width: 1030px) and (min-width: 430px) {
+    #All_books_box {
+        width: 100%;
+    }
+}

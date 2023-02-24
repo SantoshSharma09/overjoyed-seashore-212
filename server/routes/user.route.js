@@ -3,6 +3,7 @@ const express=require("express")
 const {Usermodel}=require("../modals/user.modal")
 const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt")
+const {adminauthenticate}=require("../middleware/adminauth.middlrware")
 
 
 const userrouter=express.Router()
@@ -31,8 +32,12 @@ try{
         await user.save()
         res.send({"msg":"user registered"})
       }
+      else if(email!==confirm_email)
+      {
+        res.send({"msg":"Unmatched Email"})
+      }
       else{
-        res.send({"msg":"password and confirm password and email and confirmed email are not matched"})
+        res.send({"msg":"Unmatched Password"})
       }
     }   
     }
@@ -59,7 +64,7 @@ userrouter.post("/login",async(req,res)=>{
           bcrypt.compare(pass, user[0].pass, (err, result)=>{
              if(result)
              {
-             let token=jwt.sign({backend:"javascript"}, 'aarti', { expiresIn: '1h' });
+             let token=jwt.sign({userID:user[0]._id}, 'aarti', { expiresIn: '1h' });
              res.send({"msg":"login success","token":token})
              }
              else{
@@ -75,6 +80,20 @@ userrouter.post("/login",async(req,res)=>{
  catch(err){
   res.send({"msg":"something went wrong","error":err.message})
  }
+})
+
+
+
+//get all users
+userrouter.get("/", adminauthenticate,  async(req,res)=>{
+  try{
+      const notes=await Usermodel.find()
+       res.send(notes)
+  }
+
+  catch(err){
+      res.send({"msg":"cannot get the notes data", "error":err.message})
+}
 })
 
 

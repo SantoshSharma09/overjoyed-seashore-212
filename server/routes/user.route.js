@@ -31,8 +31,12 @@ try{
         await user.save()
         res.send({"msg":"user registered"})
       }
+      else if(email!==confirm_email)
+      {
+        res.send({"msg":"Unmatched Email"})
+      }
       else{
-        res.send({"msg":"password and confirm password and email and confirmed email are not matched"})
+        res.send({"msg":"Unmatched Password"})
       }
     }   
     }
@@ -75,6 +79,18 @@ userrouter.post("/login",async(req,res)=>{
  catch(err){
   res.send({"msg":"something went wrong","error":err.message})
  }
+})
+
+//get all users
+userrouter.get("/", async(req,res)=>{
+  try{
+      const notes=await Usermodel.find()
+       res.send(notes)
+  }
+
+  catch(err){
+      res.send({"msg":"cannot get the notes data", "error":err.message})
+}
 })
 
 

@@ -1,12 +1,30 @@
 import React from "react";
-import Allrouter from "../routes/Allrouter";
+import Sidebar from "../Sidebar/Sidebar";
+import "./Dashboard.css"
 
+import Navbar from "../Navbar/Navbar";
+// import {Doughnut, Line} from "react-chartjs-2"
 
 const Dashboard=()=>{
     return(
 <>
-<Allrouter/>
-<h1>Dashboard page</h1>
+<Navbar/>
+
+<div className="admin_dashboard_side_start">
+
+<div className="admin_dashboard_sidebar_section">
+<Sidebar/>
+</div>
+
+
+
+<div className="doughnat_chart_admin_dashboard">
+
+</div>
+
+
+</div>
+
 </>
     )
 }

@@ -10,14 +10,24 @@ bookRouter.get("/", async(req,res)=>{
 })
 
 
+
+
+bookRouter.get("/:id",async(req,res)=>{
+   let num = req.params.id;
+   try{
+       let x = await BookModel.findOne({_id:num});
+       res.send(x)
+   } catch(err){
+       res.send(err.message)
+   }
+})
+
 bookRouter.post("/post",async(req,res)=>{
 try{
-   
 
-   let users= new BookModel(req.body);
-   //console.log(req.body)
-   let ans=await users.save();
-  // console.log(ans)
+    let users= new BookModel(req.body);
+   console.log(users)
+   await users.save();
    res.send("Data posted of books")
 
 }

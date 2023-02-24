@@ -3,8 +3,10 @@ const { BookModel } = require("../modals/book.modal")
 const bookRouter=express.Router()
 
 
-bookRouter.get("/", (req,res)=>{
-     res.send({"msg":"Home page of Book router"})
+bookRouter.get("/", async(req,res)=>{
+   const users= await BookModel.find();
+   
+     res.send(users)
 })
 
 bookRouter.post("/post",async(req,res)=>{
@@ -12,8 +14,9 @@ try{
    
 
    let users= new BookModel(req.body);
-   console.log(users)
-   await users.save();
+   //console.log(req.body)
+   let ans=await users.save();
+  // console.log(ans)
    res.send("Data posted of books")
 
 }
@@ -21,6 +24,33 @@ catch(err){
    res.send({"Msg":"Error in data post for books"})
 }
 
+})
+
+//update
+bookRouter.patch("/update/:id",async(req,res)=>{
+   let bookId= req.params.id;
+try{
+   await BookModel.findByIdAndUpdate({_id:bookId},req.body);
+   res.send("Updated")
+   
+}
+catch(err){
+   res.send({"Msg":"Error in Edit"})
+}
+})
+
+
+//delete
+
+bookRouter.delete("/delete/:id",async(req,res)=>{
+   let bookId= req.params.id;
+   try{
+         await BookModel.findByIdAndDelete({_id:bookId})
+         res.send("Deleted ")
+   }
+   catch(err){
+      res.send({"Msg":"Error in Delete"})
+   }
 })
 
 module.exports={

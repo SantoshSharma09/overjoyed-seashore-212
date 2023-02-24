@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
 
 
-const bookSchema= mongoose.Schema({
+const bookSchema= mongoose.Schema([{
    
         id:Number,
         image:String,
@@ -10,11 +10,10 @@ const bookSchema= mongoose.Schema({
         price:Number,
         author:String,
         description:String,
-        img:String,
         category:String
     
 
-},{
+}],{
     versionKey:false
 })
 

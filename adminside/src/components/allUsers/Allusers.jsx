@@ -23,22 +23,31 @@ const Allusers=()=>{
         <>
          <Navbar/>
         <h1>All users page</h1>
-        <div>
-        {users ? users.map((el)=>{
-        return(
-            <>
-          
-            <h2>ID:{el._id}</h2>
-            <h2>Name:{el.f_name}</h2>
-            <h2>Email:{el.email}</h2>
-            <h2>Role:{el.role}</h2>
-            <button>Delete</button>
-           
-            </>
-        )
-        }) 
-        :<h1>Can't see users data because you are not admin</h1>}
-        </div>
+        <div className="admin_allusers_table_side">
+       <table border="1" width="100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {users ? users.map((el) => (
+          <tr key={el._id}>
+            <td>{el._id}</td>
+            <td>{el.f_name}</td>
+            <td>{el.email}</td>
+            <td>{el.role}</td>
+            <td><button>Delete</button></td>
+          </tr>
+        )) :<h1>Can't see users data because you are not admin</h1>
+    }
+ </tbody>
+    </table>
+    </div>
         </>
     )
 }

@@ -3,11 +3,7 @@ const { BookModel } = require("../modals/book.modal")
 const bookRouter=express.Router()
 
 
-// bookRouter.get("/", async(req,res)=>{
-//    const users= await BookModel.find();
-   
-//      res.send(users)
-// })
+
 bookRouter.get("/:id",async(req,res)=>{
    let num = req.params.id;
    try{
@@ -17,14 +13,13 @@ bookRouter.get("/:id",async(req,res)=>{
        res.send(err.message)
    }
 })
+
 bookRouter.post("/post",async(req,res)=>{
 try{
-   
 
-   let users= new BookModel(req.body);
-   //console.log(req.body)
-   let ans=await users.save();
-  // console.log(ans)
+    let users= new BookModel(req.body);
+   console.log(users)
+   await users.save();
    res.send("Data posted of books")
 
 }
@@ -33,10 +28,7 @@ catch(err){
 }
 
 })
-// http://localhost:8000/users?title= xyx&&title2=abc
 
-//let query= req.body.query;
-//update
 bookRouter.get("/",async(req,res)=>{
    try{
       let query= req.query;

@@ -4,17 +4,23 @@ import "../styles/prod.css";
 import Carousel from "better-react-carousel";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Button, SimpleGrid } from "@chakra-ui/react";
 
 const ProductPage = () => {
   const [prod, setProd] = React.useState([]);
+  const [fiction, setFiction] = React.useState([]);
 
   //Fetching the data:
   const getProd = () => {
     axios
       .get(`http://localhost:8000/books`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setProd(res.data);
+        //Filtering Fiction data:
+        const fictionData = prod.filter((prod) => prod.category == "fiction");
+        // console.log(fictionData);
+        setFiction(fictionData);
       })
       .catch((err) => console.log(err));
   };
@@ -123,7 +129,7 @@ const ProductPage = () => {
           <div className="special_sections">
             {/* <hr id="line" /> */}
             <h1>Special Sections</h1>
-            <div>
+            <SimpleGrid columns={{ base: 2, sm: 3, md: 4, lg: 5 }} spacing={3}>
               <img
                 src="https://dispatch.barnesandnoble.com/content/dam/ccr/bnstores/books/customer-favorites/2022/Fiction/PROD-22557_Customer_Favorites_Romance-hover.jpg"
                 alt=""
@@ -144,28 +150,33 @@ const ProductPage = () => {
                 src="https://dispatch.barnesandnoble.com/content/dam/ccr/bnstores/books/customer-favorites/2022/Fiction/PROD-22557_Customer_Favorites_Mystery-hover.jpg"
                 alt=""
               />
-            </div>
+            </SimpleGrid>
           </div>
           <div className="booksellers_fav">
             <h1>Bookseller Favorites</h1>
-            <Carousel cols={4} rows={1} gap={5}>
+            <Carousel cols={3} rows={1} gap={5}>
               {prod &&
                 prod.map((prod) => {
                   return (
                     <Carousel.Item>
                       <motion.div key={prod.id} className="single_prod">
                         <div className="img_and_button">
-                          <Link to={`/singleproduct/${prod.id}`}>
+                          <Link to={`/books/${prod._id}`}>
                             <motion.img
                               whileHover={{ scale: 1.1 }}
                               src={prod.image}
                               alt=""
-                              width={"100px"}
+                              width={"150px"}
                             />
+                            <br />
+                            <Button
+                              style={{ width: "100px" }}
+                              colorScheme="blue"
+                              className="add_to_cart_button"
+                            >
+                              View Details
+                            </Button>
                           </Link>
-                          <button className="add_to_cart_button">
-                            Add to Cart
-                          </button>
                         </div>
                         <h2>{prod.category}</h2>
                         <p>{prod.price}</p>
@@ -180,13 +191,13 @@ const ProductPage = () => {
           <div className="fiction_bestsellers">
             <h1>Fiction Bestsellers</h1>
             <Carousel cols={4} rows={1} gap={5}>
-              {prod &&
-                prod.map((prod) => {
+              {fiction &&
+                fiction.map((prod) => {
                   return (
                     <Carousel.Item>
                       <motion.div key={prod.id} className="single_prod">
                         <div className="img_and_button">
-                          <Link to={`/singleproduct/${prod._id}`}>
+                          <Link to={`/books/${prod._id}`}>
                             <motion.img
                               whileHover={{ scale: 1.1 }}
                               src={prod.image}
@@ -194,14 +205,16 @@ const ProductPage = () => {
                               width={"100px"}
                             />
                           </Link>
-                          <button className="add_to_cart_button">
-                            Add to Cart
-                          </button>
+                          <Button
+                            style={{ width: "100px" }}
+                            colorScheme="blue"
+                            className="add_to_cart_button"
+                          >
+                            View Details
+                          </Button>
                         </div>
                         <h2>{prod.category}</h2>
                         <p>{prod.price}</p>
-
-                        {/* <hr /> */}
                       </motion.div>
                     </Carousel.Item>
                   );

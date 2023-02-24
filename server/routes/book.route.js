@@ -38,12 +38,7 @@ bookRouter.get("/:id",async(req,res)=>{
 
 
 //add book data
-bookRouter.post("/post",async(req,res)=>{
-try{
-   let book= new BookModel(req.body);
-   console.log(book)
-   await book.save();
- res.send({"mag":"data added"})
+
 
 bookRouter.post("/post",async(req,res)=>{
 try{
@@ -71,6 +66,12 @@ bookRouter.patch("/update/:id",async (req,res)=>{
    {
       await BookModel.findByIdAndUpdate({_id:ID},updateddata)
     res.send({"msg":"Data Updated"})
+   }
+   catch(err){
+      res.send({"Msg":"Error in Edit"})
+   
+   }
+})
      
 
 bookRouter.get("/",async(req,res)=>{
@@ -132,10 +133,7 @@ try{
    res.send("Updated")
    
 }
-catch(err){
-   res.send({"Msg":"Error in Edit"})
 
-}
    catch(err)
    {
        res.send({"msg":"Cannot Modify", "error":err.message})

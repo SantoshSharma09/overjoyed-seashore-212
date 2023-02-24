@@ -46,7 +46,11 @@ const SignUpPage = () => {
                 "Content-type":"application/json"
             }
         }).then(res=>res.json())
-        .then(res=>console.log(res))
+        .then(res=>{
+          console.log(res)
+          alert(res.msg)
+        }
+        )
         .catch(err=>console.log(err))
         
   }

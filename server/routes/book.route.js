@@ -19,12 +19,18 @@ bookRouter.get("/:id",async(req,res)=>{
 })
 bookRouter.post("/post",async(req,res)=>{
 try{
+
+    let users= new BookModel(req.body);
+   console.log(users)
+   await users.save();
+
    
 
    let users= new BookModel(req.body);
    //console.log(req.body)
    let ans=await users.save();
   // console.log(ans)
+
    res.send("Data posted of books")
 
 }

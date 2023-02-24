@@ -9,9 +9,7 @@ bookRouter.get("/", (req,res)=>{
 
 bookRouter.post("/post",async(req,res)=>{
 try{
-   
-
-   let users= new BookModel(req.body);
+    let users= new BookModel(req.body);
    console.log(users)
    await users.save();
    res.send("Data posted of books")

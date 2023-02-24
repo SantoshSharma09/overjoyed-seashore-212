@@ -1,0 +1,22 @@
+.admin_sidebar_start_with_link{
+    /* border: 1px solid red; */
+    margin-left: 20px;
+}
+.admin_sidebar_start_with_link>h1{
+    color: rgb(61,89,98);
+}
+.admin_sidebar_start_with_link button{
+    width: 50%;
+    margin-top: 20px;
+    height: 40px;
+    background-color: rgb(61,89,98);
+    border: 0;
+    font-size: 18px;
+    color: white;
+    border-radius: 3px;
+    
+}
+
+.admin_sidebar_start_with_link link{
+    text-decoration: none;
+}

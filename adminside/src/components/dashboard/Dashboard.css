@@ -1,6 +1,6 @@
 .admin_dashboard_side_start{
     display: grid;
-    grid-template-columns:30% 70%;
+    grid-template-columns:repeat(3,1fr);
     /* border: 1px solid red; */
     height: 500px;
     width: 100%;

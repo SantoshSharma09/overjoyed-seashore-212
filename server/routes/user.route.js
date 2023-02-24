@@ -3,6 +3,7 @@ const express=require("express")
 const {Usermodel}=require("../modals/user.modal")
 const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt")
+const {adminauthenticate}=require("../middleware/adminauth.middlrware")
 
 
 const userrouter=express.Router()
@@ -63,7 +64,7 @@ userrouter.post("/login",async(req,res)=>{
           bcrypt.compare(pass, user[0].pass, (err, result)=>{
              if(result)
              {
-             let token=jwt.sign({backend:"javascript"}, 'aarti', { expiresIn: '1h' });
+             let token=jwt.sign({userID:user[0]._id}, 'aarti', { expiresIn: '1h' });
              res.send({"msg":"login success","token":token})
              }
              else{
@@ -81,8 +82,10 @@ userrouter.post("/login",async(req,res)=>{
  }
 })
 
+
+
 //get all users
-userrouter.get("/", async(req,res)=>{
+userrouter.get("/", adminauthenticate,  async(req,res)=>{
   try{
       const notes=await Usermodel.find()
        res.send(notes)

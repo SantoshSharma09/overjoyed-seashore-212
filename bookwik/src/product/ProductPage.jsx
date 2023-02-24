@@ -11,7 +11,7 @@ const ProductPage = () => {
   //Fetching the data:
   const getProd = () => {
     axios
-      .get(`https://fakestoreapi.com/products`)
+      .get(`http://localhost:8000/books`)
       .then((res) => {
         console.log(res.data);
         setProd(res.data);
@@ -186,7 +186,7 @@ const ProductPage = () => {
                     <Carousel.Item>
                       <motion.div key={prod.id} className="single_prod">
                         <div className="img_and_button">
-                          <Link to={`/singleproduct/${prod.id}`}>
+                          <Link to={`/singleproduct/${prod._id}`}>
                             <motion.img
                               whileHover={{ scale: 1.1 }}
                               src={prod.image}

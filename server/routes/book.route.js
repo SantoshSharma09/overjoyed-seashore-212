@@ -8,7 +8,15 @@ bookRouter.get("/", async(req,res)=>{
    
      res.send(users)
 })
-
+bookRouter.get("/:id",async(req,res)=>{
+   let num = req.params.id;
+   try{
+       let x = await BookModel.findOne({_id:num});
+       res.send(x)
+   } catch(err){
+       res.send(err.message)
+   }
+})
 bookRouter.post("/post",async(req,res)=>{
 try{
    

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
 import "./Allusers.css"
 
 const Allusers=()=>{
+  const navigate=useNavigate()
     const [users,setusers]=useState([])
 
     useEffect(()=>{
@@ -15,7 +17,17 @@ const Allusers=()=>{
         .then(res=>
             {
                 console.log(res)
-                setusers(res)
+                if(res.msg==="You are not admin")
+                {
+                    alert(res.msg)
+                    navigate("/")
+                }
+                else{
+                  setusers(res)
+                  localStorage.setItem("allusers",res.length)
+                }
+                
+                
             })
         .catch(err=>console.log(err))
     }, [])

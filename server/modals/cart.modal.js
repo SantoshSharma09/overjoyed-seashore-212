@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
 
 
-const bookSchema= mongoose.Schema({
+const cartSchema= mongoose.Schema({
    
         id:Number,
         image:String,
@@ -17,6 +17,6 @@ const bookSchema= mongoose.Schema({
     versionKey:false
 })
 
-const BookModel= mongoose.model("book",bookSchema);
+const CartModel= mongoose.model("cart",cartSchema);
 
-module.exports={BookModel};
+module.exports={CartModel};

@@ -33,7 +33,9 @@ catch(err){
 }
 
 })
+// http://localhost:8000/users?title= xyx&&title2=abc
 
+//let query= req.body.query;
 //update
 bookRouter.patch("/update/:id",async(req,res)=>{
    let bookId= req.params.id;

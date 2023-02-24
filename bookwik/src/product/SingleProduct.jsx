@@ -3,14 +3,14 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 const SingleProduct = () => {
-  const { id } = useParams();
+  const { _id } = useParams();
   const [singleProd, setSingleProd] = React.useState("");
 
   const getSingleprod = () => {
     axios
-      .get(`https://fakestoreapi.com/products/${id}`)
+      .get(`http://localhost:8000/books/${_id}`)
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
         setSingleProd(res.data);
       })
       .catch((err) => console.log(err));

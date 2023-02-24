@@ -1,4 +1,13 @@
-import { Box, Button, Flex, Image, SimpleGrid, Text } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  Box,
+  Button,
+  Flex,
+  Image,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -10,6 +19,7 @@ const SingleBookPage = () => {
   //   console.log(id);
   const [book, setBook] = React.useState("");
 
+  //Getting Single book:
   const getSingleBook = () => {
     axios
       .get(`http://localhost:8000/books/${id}`)
@@ -24,9 +34,24 @@ const SingleBookPage = () => {
     getSingleBook();
   }, []);
 
+  //Adding to cart:
   const handleCart = () => {
-    console.log("Clicked");
+    // console.log(book);
+    axios
+      .post(`http://localhost:8000/cart/addtocart`, book)
+      .then((res) => {
+        // console.log(res);
+        alert("Added to cart");
+      })
+      .catch((err) => console.log(err));
   };
+
+  //   const alert = () => {
+  //     <Alert status="success">
+  //       <AlertIcon />
+  //       Added to Cart!
+  //     </Alert>;
+  //   };
 
   return (
     <Box id="single_book_page">

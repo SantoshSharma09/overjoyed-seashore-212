@@ -15,11 +15,12 @@ app.use(cors({
 }))
 
 app.use("/users", userrouter)
-
+app.use("/kitab", Bookrouter)
 //app.use("/books",bookRouter)
+//app.use(middleware)
 app.use("/cart", cartRouter)
 
-app.use("/kitab", Bookrouter)
+
 
 
 

@@ -1,35 +1,34 @@
-const express= require("express")
+const express = require("express")
 require('dotenv').config()
-const {connection}=require("./db")
+const { connection } = require("./db")
 //const {bookRouter}=require("./routes/book.route")
-const {userrouter}=require("./routes/user.route")
-const {cartRouter}= require("./routes/cart.route")
-const cors=require("cors")
-const {Bookrouter}= require("./routes/book")
+const { userrouter } = require("./routes/user.route")
+const { cartRouter } = require("./routes/cart.route")
+const cors = require("cors")
+const { Bookrouter } = require("./routes/book")
 
-const app=express()
+const app = express()
 app.use(express.json())
 
 app.use(cors({
-    origin:"*"
+    origin: "*"
 }))
 
-app.use("/users",userrouter)
+app.use("/users", userrouter)
 
 //app.use("/books",bookRouter)
-app.use("/cart",cartRouter)
+app.use("/cart", cartRouter)
 
-app.use("/kitab",Bookrouter)
+app.use("/kitab", Bookrouter)
 
 
 
-app.listen(process.env.port,async()=>{
-    try{
+app.listen(process.env.port, async () => {
+    try {
         await connection
         console.log("connected to the db")
     }
-    catch(err)
-    {
+    catch (err) {
         console.log("cannot connect to db")
         console.log(err)
     }

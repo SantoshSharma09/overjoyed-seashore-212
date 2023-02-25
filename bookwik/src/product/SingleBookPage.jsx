@@ -22,7 +22,7 @@ const SingleBookPage = () => {
   //Getting Single book:
   const getSingleBook = () => {
     axios
-      .get(`http://localhost:8000/books/${id}`)
+      .get(`http://localhost:8000/kitab/${id}`)
       .then((res) => {
         // console.log(res);
         setBook(res.data);

@@ -35,6 +35,11 @@ bookRouter.get("/:id",async(req,res)=>{
 
 
 //add book data
+
+
+
+
+
 bookRouter.post("/post",async(req,res)=>{
 try{
 
@@ -50,6 +55,9 @@ catch(err){
 }
 
 })
+
+
+
 
 
 
@@ -117,8 +125,9 @@ bookRouter.patch("/update/:id",async(req,res)=>{
    // console.log("working",user)
    res.send({msg:"user has been updated",user})
    
-
 }) 
+
+
 
 //delete book data
 bookRouter.delete("/delete/:id",async (req,res)=>{

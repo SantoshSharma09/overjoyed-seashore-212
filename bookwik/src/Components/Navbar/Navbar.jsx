@@ -15,7 +15,7 @@ const Navbar = () => {
             <Show breakpoint="(max-width: 770px)">
               <DrawerExample />
             </Show>
-            <Link>
+            <Link to="/books" >
               {" "}
               <span style={{ display: "flex", gap: "5px" }}>
                 {" "}

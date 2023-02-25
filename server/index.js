@@ -6,7 +6,7 @@ const {userrouter}=require("./routes/user.route")
 const {cartRouter}= require("./routes/cart.route")
 const cors=require("cors")
 const {Bookrouter}= require("./routes/book")
-
+// const {middleware}= require("./middleware/middleware")
 const app=express()
 app.use(express.json())
 
@@ -15,11 +15,12 @@ app.use(cors({
 }))
 
 app.use("/users",userrouter)
-
+app.use("/kitab",Bookrouter)
 //app.use("/books",bookRouter)
+//app.use(middleware)
 app.use("/cart",cartRouter)
 
-app.use("/kitab",Bookrouter)
+
 
 
 

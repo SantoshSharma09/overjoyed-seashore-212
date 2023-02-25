@@ -12,7 +12,48 @@
 /* .doughnat_chart_admin_dashboard{
     margin-top: 30px;
 } */
-.doughnat_chart_admin_dashboard img{
-    width: 80%;
+.doughnat_chart_admin_dashboard{
+    margin-top: 80px;
+    margin-left: 40px;
 }
+.doughnat_chart_admin_dashboard h1{
+    color: rgb(61,89,98); 
+}
+.admin_dashboard_chart_section{
+    margin-top: 80px;
+    
+}
+
+/* responsive */
+@media only screen and (min-width:320px) and (max-width:480px){
+    
+    .admin_dashboard_side_start{
+       
+        grid-template-columns:repeat(1,1fr);
+        /* border: 1px solid red; */
+       
+    }
+    .admin_dashboard_chart_section img{
+        width: 100%;
+    }
+       } 
+
+      
+ @media only screen and (min-width:481px) and (max-width:890px){
+    
+    .admin_dashboard_side_start{
+       
+        grid-template-columns:repeat(2,1fr);
+        /* border: 1px solid red; */
+       
+    }
+    .admin_dashboard_chart_section img{
+        width: 100%;
+    }
+       }
+
+
+@media only screen and (min-width:890px) and (max-width:1000px){
+    
+} 
 

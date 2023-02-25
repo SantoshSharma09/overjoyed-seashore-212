@@ -1,4 +1,29 @@
 .admin_allusers_table_side{
     width: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
+
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  font-size: 19px;
+ 
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color:rgb(61,89,98);
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .allusers_admin_dashboard_page{
+    color: rgb(61,89,98);
+    text-align: center;
+  }

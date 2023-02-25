@@ -96,6 +96,21 @@ userrouter.get("/", adminauthenticate,  async(req,res)=>{
 }
 })
 
+//delete user
+userrouter.delete("/delete/:id",adminauthenticate, async (req,res)=>{
+  const ID=req.params.id
+  // res.send(ID)
+ try
+  {
+     await Usermodel.findByIdAndDelete({_id:ID})
+     res.send({"msg":"User Deleted"})
+    }
+  catch(err)
+  {
+      res.send({"msg":"Cannot Deleted", "error":err.message})
+
+  }
+})
 
 
 module.exports={

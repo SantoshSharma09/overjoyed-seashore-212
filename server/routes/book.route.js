@@ -21,9 +21,6 @@ bookRouter.get("/", async(req,res)=>{
 })
 
 //get single products 
-
-
-
 bookRouter.get("/:id",async(req,res)=>{
    let num = req.params.id;
    try{
@@ -40,13 +37,16 @@ bookRouter.get("/:id",async(req,res)=>{
 //add book data
 
 
+
+
+
 bookRouter.post("/post",async(req,res)=>{
 try{
 
     let users= new BookModel(req.body);
    console.log(users)
    await users.save();
-   res.send("Data posted of books")
+   res.send({"msg":"Data Added"})
 
 
 }
@@ -57,21 +57,10 @@ catch(err){
 })
 
 
-//update book data
-bookRouter.patch("/update/:id",async (req,res)=>{
-   const ID=req.params.id
-   // res.send(ID)
-   const updateddata=req.body
-   try
-   {
-      await BookModel.findByIdAndUpdate({_id:ID},updateddata)
-    res.send({"msg":"Data Updated"})
-   }
-   catch(err){
-      res.send({"Msg":"Error in Edit"})
-   
-   }
-})
+
+
+
+
      
 
 bookRouter.get("/",async(req,res)=>{
@@ -127,19 +116,18 @@ bookRouter.get("/",async(req,res)=>{
 
 
 bookRouter.patch("/update/:id",async(req,res)=>{
-   let bookId= req.params.id;
-try{
-   await BookModel.findByIdAndUpdate({_id:bookId},req.body);
-   res.send("Updated")
+   let id= req.params.id;
+
+   console.log("inside try",id,req.body)
+   let ans = await BookModel.findByIdAndUpdate({_id:id},req.body);
+   console.log("after update")
+   let user=await BookModel.findOne({_id:id})
+   // console.log("working",user)
+   res.send({msg:"user has been updated",user})
    
-}
+}) 
 
-   catch(err)
-   {
-       res.send({"msg":"Cannot Modify", "error":err.message})
 
-   }
-})
 
 //delete book data
 bookRouter.delete("/delete/:id",async (req,res)=>{

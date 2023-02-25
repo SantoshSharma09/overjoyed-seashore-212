@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import {RiDeleteBin5Fill} from "react-icons/ri"
 
 import "./Allusers.css"
 
@@ -8,8 +9,9 @@ const Allusers=()=>{
   const navigate=useNavigate()
     const [users,setusers]=useState([])
 
-    useEffect(()=>{
-        fetch("http://localhost:8000/users/",{
+    //get all users
+const getdata=()=>{
+  fetch("http://localhost:8000/users/",{
            headers:{
             "Authorization":localStorage.getItem("token")
             }
@@ -26,17 +28,39 @@ const Allusers=()=>{
                   setusers(res)
                   localStorage.setItem("allusers",res.length)
                 }
-                
-                
-            })
+                })
         .catch(err=>console.log(err))
+}
+
+    useEffect(()=>{
+      getdata()  
     }, [])
+
+    //delete users
+    const deleteuser=(userID)=>{
+      console.log(userID);
+      fetch(`http://localhost:8000/users/delete/${userID}`,{
+          method:"DELETE",
+         headers:{
+          "Authorization":localStorage.getItem("token")
+          }
+      }).then(res=>res.json())
+      .then(res=>
+        {
+          console.log(res)
+          alert(res.msg)
+          getdata()
+        })
+      .catch(err=>console.log(err))
+  }
+
+
     return(
         <>
          <Navbar/>
-        <h1>All users page</h1>
+        <h1 className="allusers_admin_dashboard_page">All users page</h1>
         <div className="admin_allusers_table_side">
-       <table border="1" width="100%">
+       <table width="100%">
       <thead>
         <tr>
           <th>ID</th>
@@ -52,8 +76,8 @@ const Allusers=()=>{
             <td>{el._id}</td>
             <td>{el.f_name}</td>
             <td>{el.email}</td>
-            <td>{el.role}</td>
-            <td><button>Delete</button></td>
+            <td style={el.role==="admin" ? {color:"green" }: {color:"red"}}>{el.role}</td>
+            <td onClick={()=>deleteuser(el._id)}><RiDeleteBin5Fill style={{cursor:"pointer"}} /></td>
           </tr>
         )) :<h1>Can't see users data because you are not admin</h1>
     }

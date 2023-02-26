@@ -92,10 +92,52 @@ userrouter.get("/", adminauthenticate,  async(req,res)=>{
   }
 
   catch(err){
-      res.send({"msg":"cannot get the notes data", "error":err.message})
+      res.send({"msg":"cannot get the users data", "error":err.message})
 }
 })
 
+//get users by id
+userrouter.get("/:id", adminauthenticate, async(req,res)=>{
+	let usersid = req.params.id;
+	try{
+		let users = await Usermodel.findById({_id:usersid});
+		res.send(users)
+	} catch(err){
+		res.send(err.message)
+	}
+})
+
+//updated users
+userrouter.patch("/update/:id", adminauthenticate, async(req,res)=>{
+  let userid= req.params.id;
+const updatedusers=req.body
+try{
+  await Usermodel.findByIdAndUpdate({_id:userid},updatedusers);
+  res.send({"msg":"updated"})
+  
+}
+catch(err)
+  {
+      res.send({"msg":"Cannot Modify", "error":err.message})
+
+  }
+})
+
+//delete user
+userrouter.delete("/delete/:id",adminauthenticate, async (req,res)=>{
+  const ID=req.params.id
+  // res.send(ID)
+ try
+  {
+     await Usermodel.findByIdAndDelete({_id:ID})
+     res.send({"msg":"User Deleted"})
+    }
+  catch(err)
+  {
+      res.send({"msg":"Cannot Deleted", "error":err.message})
+
+  }
+})
 
 
 module.exports={

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import StripeCheckout from "react-stripe-checkout";
 
 let data = [
   {
@@ -42,6 +43,17 @@ function Cartpage() {
   const [prod, setProd] = React.useState([]);
   const [count, setCount] = React.useState(1);
 
+  let sum = 0;
+  let arr = [];
+
+  data.map((ele) => {
+    arr.push(ele.price);
+  });
+
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+
   //Fetching the data:
   const getProd = () => {
     axios
@@ -69,9 +81,12 @@ function Cartpage() {
       >
         Free Shipping on Orders of $40 or More
       </div>
-      <div style={{ width: "60%", margin: "auto", marginTop: "40px" }}>
+      <div style={{ width: "80%", margin: "auto", marginTop: "40px" }}>
         <div
-          style={{ display: "flex", marginBottom: "40px" }}
+          style={{
+            display: "flex",
+            marginBottom: "40px",
+          }}
           className="container"
         >
           <div style={{ width: "60%" }} className="left-container">
@@ -167,21 +182,33 @@ function Cartpage() {
                         <p style={{ marginRight: "10px", paddingTop: "8px" }}>
                           ${ele.price}
                         </p>
-                        <div style={{ paddingTop: "3px" }}>
+                        <div
+                          style={{
+                            paddingTop: "3px",
+                            height: "40px",
+                            width: "80px",
+                            border: "1px solid grey",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
                           <button
                             style={{
                               fontSize: "20px",
-                              paddingLeft: "5px",
-                              paddingRight: "5px",
-                              border: "1px solid grey",
+                              // paddingLeft: "5px",
+                              // paddingRight: "5px",
+                              // border: "1px solid grey",
+                              textAlign: "left",
+                              fontWeight: "600",
                             }}
                           >
                             -
                           </button>
                           <button
                             style={{
-                              border: "1px solid black",
+                              fontSize: "20px",
                               padding: "3px 10px 4px 10px",
+                              fontWeight: "600",
                             }}
                           >
                             {count}
@@ -190,8 +217,7 @@ function Cartpage() {
                           <button
                             style={{
                               fontSize: "20px",
-
-                              border: "1px solid grey",
+                              fontWeight: "600",
                             }}
                           >
                             +
@@ -226,10 +252,10 @@ function Cartpage() {
               border: "1px solid grey",
               width: "35%",
               marginLeft: "20px",
-              height: "600px",
+              height: "650px",
               padding: "20px 20px 10px 20px",
+              marginTop: "0px",
             }}
-            className="right-container"
           >
             <div>
               <h3
@@ -254,7 +280,7 @@ function Cartpage() {
                 </div>
                 <div style={{ width: "30%", float: "right" }}>
                   {" "}
-                  <p>${89.95}</p>
+                  <p>${sum}</p>
                 </div>
               </div>{" "}
               <div
@@ -302,7 +328,7 @@ function Cartpage() {
                 <div
                   style={{ width: "30%", float: "right", fontWeight: "bold" }}
                 >
-                  <p>${119.89}</p>
+                  <p>${sum + 36.94}</p>
                 </div>
               </div>
               <button
@@ -446,6 +472,7 @@ function Cartpage() {
             marginTop: "20px",
             fontSize: "12px",
             color: "green",
+            marginBottom: "50px",
           }}
         >
           <p>Terms of Use</p>

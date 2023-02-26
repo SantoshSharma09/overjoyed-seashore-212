@@ -12,7 +12,7 @@ cartRouter.post("/addtocart", middleware, async (req, res) => {
         //console.log(req.body)
         await cart.save();
         // console.log(ans)
-        res.send("Added to cart")
+        res.send({ "Msg": "Added to cart" })
     }
     catch (err) {
         res.send({ "Msg": err.message, })

@@ -43,31 +43,34 @@ const SingleBookPage = () => {
   }, []);
 
   //Adding to cart:
-  let token = localStorage.getItem("user_token");
+  // let token = localStorage.getItem("user_token");
 
   const handleCart = () => {
-    // console.log(book);
-
-    setClick(true);
-    axios
-      .post(`http://localhost:8000/cart/addtocart`, book)
+    fetch("http://localhost:8000/cart/addtocart", {
+      method: "POST",
+      body: JSON.stringify({
+        title: book.title,
+        author: book.author,
+        price: book.price,
+        image: book.image,
+        ratings: book.ratings,
+        description: book.description,
+      }),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: localStorage.getItem("user_token"),
+      },
+    })
+      .then((res) => res.json())
       .then((res) => {
         console.log(res);
-        // alert("Added to cart");
-        // if (res.data.Msg == "Please Login") {
-        //   alert(res.data.Msg);
-        //   navigate("/login");
-        // } else {
-        //   toast({
-        //     position: "top",
-        //     title: "Successfull",
-        //     description: "Added to Cart",
-        //     status: "success",
-        //     duration: 3000,
-        //     isClosable: true,
-        //   });
-        // }
-        if (token) {
+        if (res.Msg === "Please Login") {
+          alert(res.Msg);
+          navigate("/login");
+          console.log(res);
+        } else {
+          console.log(res);
+          // alert(res.Msg);
           toast({
             position: "top",
             title: "Successfull",
@@ -76,13 +79,50 @@ const SingleBookPage = () => {
             duration: 3000,
             isClosable: true,
           });
-        } else {
-          alert(res.data.Msg);
-          navigate("/login");
         }
       })
       .catch((err) => console.log(err));
   };
+
+  // const handleCart = () => {
+  //   // console.log(book);
+
+  //   setClick(true);
+  //   axios
+  //     .post(`http://localhost:8000/cart/addtocart`, book)
+  //     .then((res) => {
+  //       // console.log(res);
+  //       console.log(token);
+  //       // alert("Added to cart");
+  //       // if (res.data.Msg == "Please Login") {
+  //       //   alert(res.data.Msg);
+  //       //   navigate("/login");
+  //       // } else {
+  //       //   toast({
+  //       //     position: "top",
+  //       //     title: "Successfull",
+  //       //     description: "Added to Cart",
+  //       //     status: "success",
+  //       //     duration: 3000,
+  //       //     isClosable: true,
+  //       //   });
+  //       // }
+  //       if (token) {
+  //         toast({
+  //           position: "top",
+  //           title: "Successfull",
+  //           description: "Added to Cart",
+  //           status: "success",
+  //           duration: 3000,
+  //           isClosable: true,
+  //         });
+  //       } else {
+  //         alert(res.data.Msg);
+  //         navigate("/login");
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   //   const alert = () => {
   //     <Alert status="success">

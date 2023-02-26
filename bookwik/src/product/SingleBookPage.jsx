@@ -7,17 +7,25 @@ import {
   Image,
   SimpleGrid,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { TiTick } from "react-icons/ti";
 import "./singleBook.css";
 
 const SingleBookPage = () => {
+  //Toast:
+  const toast = useToast();
+
+  //navigate:
+  const navigate = useNavigate();
+
   const { id } = useParams();
   //   console.log(id);
   const [book, setBook] = React.useState("");
+  const [click, setClick] = React.useState(false);
 
   //Getting Single book:
   const getSingleBook = () => {
@@ -37,11 +45,33 @@ const SingleBookPage = () => {
   //Adding to cart:
   const handleCart = () => {
     // console.log(book);
+    setClick(true);
     axios
       .post(`http://localhost:8000/cart/addtocart`, book)
       .then((res) => {
         // console.log(res);
-        alert("Added to cart");
+        // alert("Added to cart");
+        // if (res.data.Msg == "Please Login") {
+        //   alert(res.data.Msg);
+        //   navigate("/login");
+        // } else {
+        //   toast({
+        //     position: "top",
+        //     title: "Successfull",
+        //     description: "Added to Cart",
+        //     status: "success",
+        //     duration: 3000,
+        //     isClosable: true,
+        //   });
+        // }
+        toast({
+          position: "top",
+          title: "Successfull",
+          description: "Added to Cart",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -84,52 +114,113 @@ const SingleBookPage = () => {
             style={{
               textAlign: "left",
               fontSize: "30px",
-              fontFamily: "sans-serif",
+              fontWeight: "700",
               letterSpacing: "2px",
             }}
+            _hover={{ cursor: "pointer" }}
           >
-            Title: {book.title}
+            {book.title}
           </Text>
           <Text
-            style={{
-              textAlign: "left",
-              fontSize: "26px",
-              fontFamily: "sans-serif",
-              letterSpacing: "1.5px",
-            }}
-            _hover={{ cursor: "pointer", textDecoration: "underline" }}
-          >
-            Author: {book.author}
-          </Text>
-          <Text style={{ textAlign: "left", fontSize: "20px" }}>
-            Rating: {book.ratings}/10
-          </Text>
-          <br />
-          <Text
+            id="book_author"
             style={{
               textAlign: "left",
               fontSize: "20px",
+              marginTop: "10px",
+              fontFamily: "sans-serif",
+            }}
+          >
+            <span
+              style={{
+                fontWeight: "bold",
+                fontSize: "20px",
+                fontWeight: "700",
+              }}
+            >
+              Author:{" "}
+            </span>{" "}
+            {book.author}
+          </Text>
+          <Text
+            id="book_price"
+            style={{
+              textAlign: "left",
+              fontSize: "20px",
+              marginTop: "5px",
+            }}
+          >
+            <span
+              style={{
+                fontWeight: "bold",
+                fontSize: "20px",
+                fontWeight: "700",
+              }}
+            >
+              Price:{" "}
+            </span>
+            ${book.price}
+          </Text>
+          <Text
+            id="book_rating"
+            style={{
+              textAlign: "left",
+              fontSize: "18px",
+              marginTop: "10px",
+              // opacity: "0.8",
+            }}
+          >
+            <span style={{ fontWeight: "bold", fontSize: "18px" }}>
+              Rating:{" "}
+            </span>{" "}
+            {book.ratings}/10
+          </Text>
+          <br />
+          <Text
+            id="book_descrip"
+            style={{
+              textAlign: "left",
+              fontSize: "17px",
               letterSpacing: "1.5px",
             }}
           >
-            <span style={{ fontWeight: "bold" }}>Description</span>: Lorem ipsum
-            dolor sit, amet consectetur adipisicing elit. Eum, optio. Suscipit
-            magnam optio illo. Qui maxime optio inventore quidem consequatur
-            suscipit aliquid.
+            <span style={{ fontWeight: "bold", fontSize: "19px" }}>
+              Description:{" "}
+            </span>{" "}
+            {book.description}
           </Text>
           <br />
-          <Button
-            onClick={handleCart}
-            style={{
-              width: "150px",
-              borderRadius: "10px",
-              color: "white",
-              backgroundColor: "coral",
-            }}
-            _hover={{ transform: "scale(1.1)" }}
-          >
-            Add to Cart
-          </Button>
+          <div>
+            {click ? (
+              <Button
+                id="book_cart_button"
+                onClick={handleCart}
+                style={{
+                  width: "150px",
+                  borderRadius: "10px",
+                  color: "white",
+                  backgroundColor: "coral",
+                }}
+                _hover={{ transform: "scale(1.1)" }}
+                isDisabled={click}
+              >
+                Add to Cart
+              </Button>
+            ) : (
+              <Button
+                id="book_cart_button"
+                onClick={handleCart}
+                style={{
+                  width: "150px",
+                  borderRadius: "10px",
+                  color: "white",
+                  backgroundColor: "coral",
+                }}
+                _hover={{ transform: "scale(1.1)" }}
+              >
+                Add to Cart
+              </Button>
+            )}
+          </div>
         </Box>
       </SimpleGrid>
     </Box>

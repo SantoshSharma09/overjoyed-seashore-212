@@ -1,12 +1,21 @@
-import { Box, Hide, Show } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Box, Button, Hide, Show } from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import "./Navbar.css";
 import DrawerExample from "./Drawer";
 import DrawerExample2 from "./Drawer2";
 import NavInputMenu from "./NavInputMenu";
 import AccountMenu from "./AccountMenu";
+
 const Navbar = () => {
+  const navigate = useNavigate()
+  let usertoken= localStorage.getItem("user_token");
+  const handleLogout =()=>{
+    localStorage.clear();
+
+navigate("/")
+
+  }
   return (
     <>
       <Box id="Navbar">
@@ -48,6 +57,7 @@ const Navbar = () => {
           </Show>
           <Box id="Navbar-TopRight">
             <Hide below="md">
+              
               <AccountMenu />
             </Hide>
             <span style={{ display: "flex", gap: "5px" }}>
@@ -58,7 +68,9 @@ const Navbar = () => {
                 alt="wishlist-icon-logo"
               />{" "}
               <Hide breakpoint="(max-width: 770px)"> WISHLIST</Hide>
+
             </span>
+            <span>{usertoken?<Button onClick={handleLogout} >Logout</Button>:""}</span>
             <Show breakpoint="(max-width: 770px)">
               <DrawerExample2 />
             </Show>
@@ -108,7 +120,7 @@ const Navbar = () => {
         {/* Nav-mid ens Here */}
         {/* Nav-bottom starts here */}
         <Box id="Nav-bottom">
-          <Link>
+          <Link to="/kitab" >
             {" "}
             <span>Books</span>{" "}
           </Link>

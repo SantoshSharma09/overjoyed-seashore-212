@@ -2,7 +2,9 @@
     width: 100%;
     /* border: 1px solid red; */
 }
-
+.table_users_admin_start{
+  width: 100%;
+}
 
 table td,
 table th {
@@ -27,3 +29,23 @@ table th {
     color: rgb(61,89,98);
     text-align: center;
   }
+
+
+  /* responsive */
+@media only screen and (min-width:320px) and (max-width:480px){
+  .table_users_admin_start{
+    width: 30%;
+  }
+     } 
+
+    
+@media only screen and (min-width:481px) and (max-width:890px){
+  .table_users_admin_start{
+    width: 40%;
+  }
+     }
+
+
+@media only screen and (min-width:890px) and (max-width:1115px){
+  
+} 

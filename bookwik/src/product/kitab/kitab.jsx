@@ -18,13 +18,14 @@ const KitabPage = () => {
   useEffect(() => {
     const getAllMovies = async () => {
       try {
-        const url = `http://localhost:8000/kitab?page=${page}&sort=${
+        const url = `http://localhost:8000/kitab/getdata?page=${page}&sort=${
           sort.sort
         }&category=${filterCategory.toString()}&search=${search}`;
         const data = await axios.get(url);
         // setObj(data.data.BooksList);
-        // console.log(data.data.BooksList)
-        setData(data.data.BooksList);
+        // console.log(data);
+        // setData(data.data.BooksList);
+        setData(data.data);
         setObj(data);
       } catch (err) {
         console.log(err);
@@ -53,6 +54,7 @@ const KitabPage = () => {
         />
       </div>
 
+      {/* All Books */}
       <SimpleGrid
         style={{ width: "80%", margin: "auto" }}
         columns={{ base: 1, sm: 1, md: 2, lg: 3 }}
@@ -66,19 +68,22 @@ const KitabPage = () => {
                 className="single_prod"
                 style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
               >
-                <div className="img_and_button">
+                <div
+                  className="img_and_button"
+                  style={{ marginBottom: "10px" }}
+                >
                   <Link to={`/kitab/${prod._id}`}>
                     <Box>
                       <motion.img
                         whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.3 }}
                         src={prod.image}
                         width={"270px"}
                         height={"250px"}
-                        style={{ padding: "15px" }}
+                        style={{ padding: "20px" }}
                       />
                     </Box>
-                    <br />
+                    {/* <br /> */}
                     <Button className="add_to_cart_button">View Details</Button>
                   </Link>
                 </div>

@@ -8,14 +8,13 @@ import NavInputMenu from "./NavInputMenu";
 import AccountMenu from "./AccountMenu";
 
 const Navbar = () => {
-  const navigate = useNavigate()
-  let usertoken= localStorage.getItem("user_token");
-  const handleLogout =()=>{
+  const navigate = useNavigate();
+  let usertoken = localStorage.getItem("user_token");
+  const handleLogout = () => {
     localStorage.clear();
 
-navigate("/")
-
-  }
+    navigate("/");
+  };
   return (
     <>
       <Box id="Navbar">
@@ -24,7 +23,7 @@ navigate("/")
             <Show breakpoint="(max-width: 770px)">
               <DrawerExample />
             </Show>
-            <Link to="/books" >
+            <Link to="/books">
               {" "}
               <span style={{ display: "flex", gap: "5px" }}>
                 {" "}
@@ -57,7 +56,6 @@ navigate("/")
           </Show>
           <Box id="Navbar-TopRight">
             <Hide below="md">
-              
               <AccountMenu />
             </Hide>
             <span style={{ display: "flex", gap: "5px" }}>
@@ -68,9 +66,10 @@ navigate("/")
                 alt="wishlist-icon-logo"
               />{" "}
               <Hide breakpoint="(max-width: 770px)"> WISHLIST</Hide>
-
             </span>
-            <span>{usertoken?<Button onClick={handleLogout} >Logout</Button>:""}</span>
+            <span>
+              {usertoken ? <Button onClick={handleLogout}>Logout</Button> : ""}
+            </span>
             <Show breakpoint="(max-width: 770px)">
               <DrawerExample2 />
             </Show>
@@ -118,7 +117,7 @@ navigate("/")
         {/* Nav-mid ens Here */}
         {/* Nav-bottom starts here */}
         <Box id="Nav-bottom">
-          <Link to="/kitab" >
+          <Link to="/kitabpage">
             {" "}
             <span>Books</span>{" "}
           </Link>

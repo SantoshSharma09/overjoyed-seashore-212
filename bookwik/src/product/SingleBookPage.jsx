@@ -43,13 +43,16 @@ const SingleBookPage = () => {
   }, []);
 
   //Adding to cart:
+  let token = localStorage.getItem("user_token");
+
   const handleCart = () => {
     // console.log(book);
+
     setClick(true);
     axios
       .post(`http://localhost:8000/cart/addtocart`, book)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         // alert("Added to cart");
         // if (res.data.Msg == "Please Login") {
         //   alert(res.data.Msg);
@@ -64,14 +67,19 @@ const SingleBookPage = () => {
         //     isClosable: true,
         //   });
         // }
-        toast({
-          position: "top",
-          title: "Successfull",
-          description: "Added to Cart",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
+        if (token) {
+          toast({
+            position: "top",
+            title: "Successfull",
+            description: "Added to Cart",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
+        } else {
+          alert(res.data.Msg);
+          navigate("/login");
+        }
       })
       .catch((err) => console.log(err));
   };

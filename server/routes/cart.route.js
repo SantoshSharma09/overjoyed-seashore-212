@@ -2,6 +2,8 @@ const express= require("express");
 const {CartModel}= require("../modals/cart.modal")
 const cartRouter= express.Router();
 const {middleware}= require("../middleware/middleware")
+
+
 cartRouter.get("/",(req,res)=>{
     res.send("Cart home page")
 })

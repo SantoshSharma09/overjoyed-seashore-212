@@ -1,22 +1,22 @@
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
 
-
-const cartSchema= mongoose.Schema({
+const cartSchema = mongoose.Schema(
+  {
+    id: Number,
+    image: String,
+    title: String,
+    ratings: Number,
+    price: Number,
+    author: String,
+    description: String,
+    category: String,
    
-        id:Number,
-        image:String,
-        title:String,
-        ratings:Number,
-        price:Number,
-        author:String,
-        description:String,
-        category:String
-    
+  },
+  {
+    versionKey: false,
+  }
+);
 
-},{
-    versionKey:false
-})
+const CartModel = mongoose.model("cart", cartSchema);
 
-const CartModel= mongoose.model("cart",cartSchema);
-
-module.exports={CartModel};
+module.exports = { CartModel };

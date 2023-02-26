@@ -1,7 +1,9 @@
 import { Box, Button, Heading, SimpleGrid } from '@chakra-ui/react'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './LoginPage.css'
 const LoginPage = () => {
+  const navigate = useNavigate()
   const initialState ={
       email:"",
      pass:""}
@@ -21,15 +23,30 @@ const LoginPage = () => {
       },
      
   }).then(res=>res.json()).then((res)=>{
-    console.log(res.msg)
+    
+    console.log(res)
+    console.log(email)
+    if(res.msg==="login success")
+    {
+     alert(res.msg)
+    localStorage.setItem("user_token",res.token)
+    localStorage.setItem("user_email",email)
+    navigate("/kitab")
+    
+    }
+   else{
     alert(res.msg)
+   setObj(initialState)
+    // setpassword("")
+     navigate("/login")
+   }
     
   })
     
   }
   return (
     <Box id='LoginPage'  >
-       <Heading style={{padding:"20px 0px"}} >Create an Account</Heading>
+       <Heading style={{padding:"20px 0px"}} >Log In</Heading>
        <Box  >
        
        <SimpleGrid columns={{ base: 1, sm: 2, md: 1, lg: 1 }}  spacing={3}>

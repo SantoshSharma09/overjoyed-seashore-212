@@ -2,13 +2,30 @@ const express = require("express");
 
 const Bookrouter = express.Router();
 const Books = require("../modals/Book");
+const { bookRouter } = require("./book.route");
+const {adminauthenticate} = require("../middleware/adminauth.middlrware")
  // const kitab = require("../config/books.json");
 // const Bookrouter = require("express").Router();
 // const Books = require("../modals/Book");
+
+Bookrouter.get("/getdata", async(req,res)=>{
+	try{
+	   const bookdata= await Books.find();
+	   console.log(bookdata)
+	   res.send(bookdata)
+	}
+	catch(err)
+	{
+	   res.send({"msg":"Data is not present", "error":err.message})
+	}
+   
+ })
+
+//get all data
 Bookrouter.get("/", async (req, res) => {
 	try {
 		const page = parseInt(req.query.page) - 1 || 0;
-		const limit = parseInt(req.query.limit) || 27;
+		const limit = parseInt(req.query.limit) || 30;
 		const search = req.query.search || "";
 		let sort = req.query.sort || "ratings";
 		let category = req.query.category || "All";
@@ -60,6 +77,7 @@ Bookrouter.get("/", async (req, res) => {
 	}
 });
 
+//get data by id
 Bookrouter.get("/:id",async(req,res)=>{
 	let num = req.params.id;
 	try{
@@ -70,27 +88,32 @@ Bookrouter.get("/:id",async(req,res)=>{
 	}
 })
 
-Bookrouter.post("/post",async(req,res)=>{
+
+
+
+//add data
+Bookrouter.post("/post", adminauthenticate ,async(req,res)=>{
 	let payload = req.body
      try{
 		let data = new Books(payload);
 		await data.save();
-		res.send("Data Added Successfully")
+		res.send({"msg":"Data Added Successfully"})
 	 } catch(err){
-		res.send(err.message);
+		res.send({"msg":"Cannot Added", "error":err.message});
 		console.log(err)
 	 }
 })
 
-Bookrouter.patch("/update/:id",async(req,res)=>{
+//updated books
+Bookrouter.patch("/update/:id", adminauthenticate ,async(req,res)=>{
     let bookId= req.params.id;
+	const updateddata=req.body
  try{
-    await Books.findByIdAndUpdate({_id:bookId},req.body);
-    res.send("Updated")
+    await Books.findByIdAndUpdate({_id:bookId},updateddata);
+    res.send({"msg":"updated"})
     
  }
- 
-    catch(err)
+  catch(err)
     {
         res.send({"msg":"Cannot Modify", "error":err.message})
  
@@ -98,7 +121,7 @@ Bookrouter.patch("/update/:id",async(req,res)=>{
  })
  
  //delete book data
- Bookrouter.delete("/delete/:id",async (req,res)=>{
+ Bookrouter.delete("/delete/:id", adminauthenticate ,async (req,res)=>{
     const ID=req.params.id
     // res.send(ID)
    try

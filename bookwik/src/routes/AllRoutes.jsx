@@ -10,6 +10,8 @@ import Cartpage from "../Cart/Cartpage";
 
 import SingleBookPage from "../product/SingleBookPage";
 import BooksPage from "../product/booksFolder/BooksPage";
+import KitabPage from "../product/kitab/kitab";
+import Payment from "../payment/Payment";
 
 const AllRoutes = () => {
   return (
@@ -18,10 +20,16 @@ const AllRoutes = () => {
         <Route path="/" element={<HomePage />} />
 
         <Route path={"/cart"} element={<Cartpage />} />
+        <Route path={"/payment"} element={<Payment />} />
 
         <Route path={"/books"} element={<ProductPage />} />
         <Route path={"/newbooks"} element={<BooksPage />} />
-        <Route path={"/books/:id"} element={<SingleBookPage />} />
+        {/* <Route path={"/kitab"} element={<KitabPage />} /> */}
+        <Route path={"/kitabpage"} element={<KitabPage />} />
+        {/* <Route path={"/kitab/getdata"} element={<KitabPage />} /> */}
+        {/* <Route path={"/books/:id"} element={<SingleBookPage />} /> */}
+        <Route path={"/kitab/:id"} element={<SingleBookPage />} />
+        {/* <Route path={"/kitab/getdata/:id"} element={<SingleBookPage />} /> */}
 
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />

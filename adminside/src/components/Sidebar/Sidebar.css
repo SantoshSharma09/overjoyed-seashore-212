@@ -20,3 +20,25 @@
 .admin_sidebar_start_with_link link{
     text-decoration: none;
 }
+
+
+/* responsive */
+@media only screen and (min-width:320px) and (max-width:480px){
+    
+    
+       } 
+
+      
+ @media only screen and (min-width:481px) and (max-width:890px){
+    
+    
+       }
+
+
+@media only screen and (min-width:890px) and (max-width:1115px){
+    .admin_sidebar_start_with_link button{
+        width: 70%;
+        
+    }
+} 
+

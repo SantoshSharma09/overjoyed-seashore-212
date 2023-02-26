@@ -27,5 +27,19 @@ cartRouter.post("/addtocart", middleware, async (req, res) => {
     res.send({ Msg: err.message });
   }
 });
+cartRouter.delete("/delete/:id", async (req,res)=>{
+    const ID=req.params.id
+    // res.send(ID)
+   try
+    {
+       await BookModel.findByIdAndDelete({_id:ID})
+       res.send({"msg":"Data Deleted"})
+      }
+    catch(err)
+    {
+        res.send({"msg":"Cannot Deleted", "error":err.message})
+ 
+    }
+ })
 
 module.exports = { cartRouter };

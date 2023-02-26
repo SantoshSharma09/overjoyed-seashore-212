@@ -123,11 +123,9 @@ const Navbar = () => {
         {/* Nav-mid ens Here */}
         {/* Nav-bottom starts here */}
         <Box id="Nav-bottom">
-<<<<<<< HEAD
-          <Link to="/kitab">
-=======
+
           <Link to="/kitabpage">
->>>>>>> 8a0345a8b988a355a8c001448cddc2b1b276b2a1
+
             {" "}
             <span>Books</span>{" "}
           </Link>

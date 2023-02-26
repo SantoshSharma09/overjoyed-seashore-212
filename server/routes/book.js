@@ -3,6 +3,7 @@ const express = require("express");
 const Bookrouter = express.Router();
 const Books = require("../modals/Book");
 const { bookRouter } = require("./book.route");
+const {adminauthenticate} = require("../middleware/adminauth.middlrware")
  // const kitab = require("../config/books.json");
 // const Bookrouter = require("express").Router();
 // const Books = require("../modals/Book");
@@ -91,7 +92,7 @@ Bookrouter.get("/:id",async(req,res)=>{
 
 
 //add data
-Bookrouter.post("/post",async(req,res)=>{
+Bookrouter.post("/post", adminauthenticate ,async(req,res)=>{
 	let payload = req.body
      try{
 		let data = new Books(payload);
@@ -104,7 +105,7 @@ Bookrouter.post("/post",async(req,res)=>{
 })
 
 //updated books
-Bookrouter.patch("/update/:id",async(req,res)=>{
+Bookrouter.patch("/update/:id", adminauthenticate ,async(req,res)=>{
     let bookId= req.params.id;
 	const updateddata=req.body
  try{
@@ -120,7 +121,7 @@ Bookrouter.patch("/update/:id",async(req,res)=>{
  })
  
  //delete book data
- Bookrouter.delete("/delete/:id",async (req,res)=>{
+ Bookrouter.delete("/delete/:id", adminauthenticate ,async (req,res)=>{
     const ID=req.params.id
     // res.send(ID)
    try

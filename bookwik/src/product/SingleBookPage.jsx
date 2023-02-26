@@ -11,13 +11,16 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { TiTick } from "react-icons/ti";
 import "./singleBook.css";
 
 const SingleBookPage = () => {
   //Toast:
   const toast = useToast();
+
+  //navigate:
+  const navigate = useNavigate();
 
   const { id } = useParams();
   //   console.log(id);
@@ -48,6 +51,19 @@ const SingleBookPage = () => {
       .then((res) => {
         // console.log(res);
         // alert("Added to cart");
+        // if (res.data.Msg == "Please Login") {
+        //   alert(res.data.Msg);
+        //   navigate("/login");
+        // } else {
+        //   toast({
+        //     position: "top",
+        //     title: "Successfull",
+        //     description: "Added to Cart",
+        //     status: "success",
+        //     duration: 3000,
+        //     isClosable: true,
+        //   });
+        // }
         toast({
           position: "top",
           title: "Successfull",

@@ -18,13 +18,14 @@ const KitabPage = () => {
   useEffect(() => {
     const getAllMovies = async () => {
       try {
-        const url = `http://localhost:8000/kitab?page=${page}&sort=${
+        const url = `http://localhost:8000/kitab/getdata?page=${page}&sort=${
           sort.sort
         }&category=${filterCategory.toString()}&search=${search}`;
         const data = await axios.get(url);
         // setObj(data.data.BooksList);
         // console.log(data);
-        setData(data.data.BooksList);
+        // setData(data.data.BooksList);
+        setData(data.data);
         setObj(data);
       } catch (err) {
         console.log(err);

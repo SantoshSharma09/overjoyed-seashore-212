@@ -24,9 +24,12 @@ const AllRoutes = () => {
 
         <Route path={"/books"} element={<ProductPage />} />
         <Route path={"/newbooks"} element={<BooksPage />} />
-        <Route path={"/kitab"} element={<KitabPage />} />
+        {/* <Route path={"/kitab"} element={<KitabPage />} /> */}
+        <Route path={"/kitabpage"} element={<KitabPage />} />
+        {/* <Route path={"/kitab/getdata"} element={<KitabPage />} /> */}
         {/* <Route path={"/books/:id"} element={<SingleBookPage />} /> */}
         <Route path={"/kitab/:id"} element={<SingleBookPage />} />
+        {/* <Route path={"/kitab/getdata/:id"} element={<SingleBookPage />} /> */}
 
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />

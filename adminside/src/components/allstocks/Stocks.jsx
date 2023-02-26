@@ -13,7 +13,7 @@ const Stocks=()=>{
 
     //get all books
 const getbook=()=>{
-    fetch("http://localhost:8000/kitab/getdata",{
+    fetch("https://real-blue-cormorant-cap.cyclic.app/kitab/getdata",{
         headers:{
          "Authorization":localStorage.getItem("token")
          }
@@ -40,7 +40,7 @@ const getbook=()=>{
      //delete books
      const deletebook=(bookID)=>{
         console.log(bookID);
-        fetch(`http://localhost:8000/kitab/delete/${bookID}`,{
+        fetch(`https://real-blue-cormorant-cap.cyclic.app/kitab/delete/${bookID}`,{
             method:"DELETE",
            headers:{
             "Authorization":localStorage.getItem("token")

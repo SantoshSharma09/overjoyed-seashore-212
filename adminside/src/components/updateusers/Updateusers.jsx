@@ -20,12 +20,12 @@ const Updateusers=()=>{
 
     //updated
     const updateusers =() => {
-    //    axios.patch(`http://localhost:8000/users/update/${id}`, users);
+    //    axios.patch(`https://real-blue-cormorant-cap.cyclic.app/users/update/${id}`, users);
     //     alert("Role Updated")
     //       console.log(users)
     //        navigate("/users")
 
-    fetch(`http://localhost:8000/users/update/${id}`,{
+    fetch(`https://real-blue-cormorant-cap.cyclic.app/users/update/${id}`,{
         method:"PATCH",
         body:JSON.stringify(users),
         headers:{
@@ -59,7 +59,7 @@ const Updateusers=()=>{
       
    //get data for updation
     const loadUser =  () => {
-        fetch(`http://localhost:8000/users/${id}`,{
+        fetch(`https://real-blue-cormorant-cap.cyclic.app/users/${id}`,{
                 method: "GET",
                 headers:{
                 "Authorization":localStorage.getItem("token")

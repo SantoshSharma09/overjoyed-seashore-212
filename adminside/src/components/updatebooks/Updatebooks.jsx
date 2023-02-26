@@ -23,12 +23,12 @@ const Updatebooks=()=>{
 
     //updated
     const updateboks =() => {
-    //    axios.patch(`http://localhost:8000/kitab/update/${id}`, books);
+    //    axios.patch(`https://real-blue-cormorant-cap.cyclic.app/kitab/update/${id}`, books);
     //     alert("Data Updated")
     //       console.log(books)
     //        navigate("/stocks")
 
-            fetch(`http://localhost:8000/kitab/update/${id}`,{
+            fetch(`https://real-blue-cormorant-cap.cyclic.app/kitab/update/${id}`,{
             method:"PATCH",
             body:JSON.stringify(books),
             headers:{
@@ -56,7 +56,7 @@ const Updatebooks=()=>{
     }
       
        
-        // axios.patch(`http://localhost:8000/kitab/update/${id}`, books)
+        // axios.patch(`https://real-blue-cormorant-cap.cyclic.app/kitab/update/${id}`, books)
         // .then(res=>console.log(res))
         // .catch(err=>console.log(err))
     //    navigate("/stocks")
@@ -66,7 +66,7 @@ const Updatebooks=()=>{
       
    //get data for updation
     const loadbooks =  () => {
-        fetch(`http://localhost:8000/kitab/${id}`,{
+        fetch(`https://real-blue-cormorant-cap.cyclic.app/kitab/${id}`,{
                 method: "GET",
                 headers:{
                 "Authorization":localStorage.getItem("token")

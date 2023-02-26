@@ -13,7 +13,7 @@ const Allusers=()=>{
 
     //get all users
 const getdata=()=>{
-  fetch("http://localhost:8000/users/",{
+  fetch("https://real-blue-cormorant-cap.cyclic.app/users/",{
            headers:{
             "Authorization":localStorage.getItem("token")
             }
@@ -41,7 +41,7 @@ const getdata=()=>{
     //delete users
     const deleteuser=(userID)=>{
       console.log(userID);
-      fetch(`http://localhost:8000/users/delete/${userID}`,{
+      fetch(`https://real-blue-cormorant-cap.cyclic.app/users/delete/${userID}`,{
           method:"DELETE",
          headers:{
           "Authorization":localStorage.getItem("token")

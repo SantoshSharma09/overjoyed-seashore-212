@@ -25,7 +25,7 @@ const Addstocks = () => {
     };
     console.log(bookadd);
 
-    fetch("http://localhost:8000/kitab/post", {
+    fetch("https://real-blue-cormorant-cap.cyclic.app/kitab/post", {
       method: "POST",
       body: JSON.stringify(bookadd),
       headers: {

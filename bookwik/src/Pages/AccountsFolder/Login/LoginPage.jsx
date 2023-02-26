@@ -16,7 +16,7 @@ const LoginPage = () => {
 
   const handleClick = () => {
     console.log(obj);
-    fetch("http://localhost:8000/users/login", {
+    fetch("https://real-blue-cormorant-cap.cyclic.app/users/login", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {

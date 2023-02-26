@@ -253,10 +253,10 @@ function Cartpage() {
               marginLeft: "20px",
               height: "auto",
               padding: "20px 20px 10px 20px",
-              marginTop: "-1700px",
+              marginTop: "0px",
               display: "grid",
-              justifyContent: "start",
-              // alignItems: "start",
+              justifyContent: "center",
+               alignItems: "center",
             }}
             className="right-container"
           >

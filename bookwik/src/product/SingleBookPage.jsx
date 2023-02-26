@@ -31,7 +31,7 @@ const SingleBookPage = () => {
   //Getting Single book:
   const getSingleBook = () => {
     axios
-      .get(`http://localhost:8000/kitab/${id}`)
+      .get(`https://real-blue-cormorant-cap.cyclic.app/kitab/${id}`)
       .then((res) => {
         // console.log(res);
         setBook(res.data);
@@ -47,7 +47,7 @@ const SingleBookPage = () => {
   // let token = localStorage.getItem("user_token");
 
   const handleCart = () => {
-    fetch("http://localhost:8000/cart/addtocart", {
+    fetch("https://real-blue-cormorant-cap.cyclic.app/cart/addtocart", {
       method: "POST",
       body: JSON.stringify({
         title: book.title,

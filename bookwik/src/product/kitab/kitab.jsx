@@ -18,7 +18,7 @@ const KitabPage = () => {
   useEffect(() => {
     const getAllMovies = async () => {
       try {
-        const url = `http://localhost:8000/kitab?page=${page}&sort=${
+        const url = `https://real-blue-cormorant-cap.cyclic.app/kitab?page=${page}&sort=${
           sort.sort
         }&category=${filterCategory.toString()}&search=${search}`;
         const data = await axios.get(url);

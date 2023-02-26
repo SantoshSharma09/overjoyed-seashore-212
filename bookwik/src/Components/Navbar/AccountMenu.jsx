@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 const AccountMenu = () => {
   let usertoken= localStorage.getItem("user_token");
   let user_email = localStorage.getItem("user_email")
+  const adminloginButton= ()=>{
+    window.location.href="https://adminside-rho.vercel.app/"
+  }
   return (
     <>
     <Menu style={{border:"1px solid black"}} >
@@ -19,7 +22,8 @@ const AccountMenu = () => {
 
   <MenuList style={{alignContent:"center"}} >
     <Box style={{borderBottom:"1px solid black",paddingBottom:"5px"}} >
-      <Link to="/login" > <Button style={{backgroundColor:"#006400",color:"white",borderRadius:"0px",padding:"0px 25px"}}  >Sign In</Button></Link> 
+      <Link to="/login" > <Button style={{backgroundColor:"#006400",color:"white",borderRadius:"0px",padding:"0px 25px"}}  >User Sign In</Button></Link> 
+      <Link to="#" > <Button style={{backgroundColor:"#006400",color:"white",borderRadius:"0px",padding:"0px 25px"}} onClick={adminloginButton} >Admin Sign In</Button></Link> 
         <br/>
         <Link to="/signup" > <span style={{textDecoration:"underline"}} >Create An Account</span> </Link>
     </Box>

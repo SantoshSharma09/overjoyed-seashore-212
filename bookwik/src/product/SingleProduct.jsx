@@ -8,7 +8,7 @@ const SingleProduct = () => {
 
   const getSingleprod = () => {
     axios
-      .get(`http://localhost:8000/books/${_id}`)
+      .get(`https://real-blue-cormorant-cap.cyclic.app/books/${_id}`)
       .then((res) => {
         console.log(res);
         setSingleProd(res.data);

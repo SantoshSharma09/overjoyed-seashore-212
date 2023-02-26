@@ -54,6 +54,7 @@ const Addstocks=()=>{
                 setauthor("")
                 setdesc("")
                 setimage("")
+                navigate("/stocks")
                 }
             })
         .catch(err=>console.log(err))

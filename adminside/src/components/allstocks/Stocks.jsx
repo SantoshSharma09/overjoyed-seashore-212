@@ -98,7 +98,7 @@ const getbook=()=>{
             <td>{el.author}</td>
             <td>{el.category}</td>
             <td>
-              <Link to={`/updatebooks/${el._id}`}>
+              <Link to={`/updatebooks/${el._id}`}  style={{color:"black"}}>
               <RxUpdate style={{cursor:"pointer"}}  />
               </Link>
               </td>

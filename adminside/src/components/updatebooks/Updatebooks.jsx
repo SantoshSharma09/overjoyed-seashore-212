@@ -23,10 +23,36 @@ const Updatebooks=()=>{
 
     //updated
     const updateboks =() => {
-       axios.patch(`http://localhost:8000/kitab/update/${id}`, books);
-        alert("Data Updated")
-          console.log(books)
-           navigate("/stocks")
+    //    axios.patch(`http://localhost:8000/kitab/update/${id}`, books);
+    //     alert("Data Updated")
+    //       console.log(books)
+    //        navigate("/stocks")
+
+            fetch(`http://localhost:8000/kitab/update/${id}`,{
+            method:"PATCH",
+            body:JSON.stringify(books),
+            headers:{
+                "Content-type":"application/json",
+                "Authorization":localStorage.getItem("token")
+            }
+        }).then(res=>res.json())
+        .then(res=>
+            {
+                if(res.msg==="You are not admin")
+                {
+                    alert(res.msg)
+                    navigate("/")
+                }
+                else{
+                    console.log(res)
+                    setbooks(res)
+                    alert(res.msg)
+                    navigate("/stocks")
+                }
+                
+            })
+        .catch(err=>console.log(err))
+
     }
       
        
@@ -35,26 +61,11 @@ const Updatebooks=()=>{
         // .catch(err=>console.log(err))
     //    navigate("/stocks")
 
-    // fetch(`http://localhost:8000/kitab/update/${id}`,{
-    //         method:"PATCH",
-    //         body:JSON.stringify(books),
-    //         headers:{
-    //             "Content-type":"application/json"
-    //         }
-    //     }).then(res=>res.json())
-    //     .then(res=>
-    //         {
-    //             console.log(res.data)
-    //             setbooks(res.data)
-    //             alert(res.msg)
-    //             // navigate("/stocks")
-    //         })
-    //     .catch(err=>console.log(err))
-
+   
 
       
    //get data for updation
-    const loadUser =  () => {
+    const loadbooks =  () => {
         fetch(`http://localhost:8000/kitab/${id}`,{
                 method: "GET",
                 headers:{
@@ -64,24 +75,32 @@ const Updatebooks=()=>{
             .then(res=>res.json())
             .then(res=>
                 {
-                    console.log(res)
-                    setbooks({
-                        id: id,
-                        update: true,
-                        title:res.title,
-                        price:res.price,
-                        ratings:res.ratings,
-                        author:res.author,
-                        category:res.category,
-                        description:res.description,
-                        image:res.image
-      });
+                    if(res.msg==="You are not admin")
+                    {
+                        alert(res.msg)
+                        navigate("/")
+                    }
+                    else{
+                        console.log(res)
+                        setbooks({
+                            id: id,
+                            update: true,
+                            title:res.title,
+                            price:res.price,
+                            ratings:res.ratings,
+                            author:res.author,
+                            category:res.category,
+                            description:res.description,
+                            image:res.image
+          });
+                    }
+                   
      })
      .catch(err=>console.log(err))
       };
 
     useEffect(() => {
-        loadUser();
+        loadbooks();
       }, []);
 
      
@@ -89,6 +108,7 @@ const Updatebooks=()=>{
         <>
         <Navbar/>
         <h1 className="allusers_admin_dashboard_page">Update Stocks</h1>
+        <h2 className="allusers_admin_dashboard_page">Stock Id: {books.id}</h2>
        <div className="addstocks_dashboard_admin_side">
        <input type="text" placeholder="Enter Title" name="title" value={title} onChange={e=>oninputchange(e)}/><br />
        <input type="number" placeholder="Enter Price" name="price" value={price} onChange={e=>oninputchange(e)} /><br />

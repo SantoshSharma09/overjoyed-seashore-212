@@ -11,7 +11,8 @@ const Navbar=()=>{
     function logoutfun()
     {
         localStorage.clear();
-        navigate("/")
+        // navigate("/")
+        window.location.href="https://bookwik.vercel.app/"
     }
 
     const homepagehandle=()=>{

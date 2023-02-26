@@ -1,52 +1,16 @@
 import React from "react";
 import axios from "axios";
-import StripeCheckout from "react-stripe-checkout";
+import { Link } from "react-router-dom";
 
-let data = [
-  {
-    id: 1,
-    image:
-      "https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9780593655252_p0_v1%5D&call=url%5Bfile:common/decodeProduct.chain%5D",
-    title: "Someone Else's Shoes",
-    ratings: 5,
-    price: 12.99,
-    author: "by Jojo Moyes",
-    description: "Someone Else's Shoes",
-    category: "fiction",
-  },
-  {
-    id: 2,
-    image:
-      "https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9780593446423_p0_v2%5D&call=url%5Bfile:common/decodeProduct.chain%5D",
-    title: "Maureen: A Harold Fry Novel     ",
-    ratings: 4.5,
-    price: 23.99,
-    author: "by Rachel Joyce",
-    description: " Maureen: A Harold Fry Novel ",
-    category: "fiction",
-  },
-  {
-    id: 3,
-    image:
-      "https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9781668024485_p0_v3%5D&call=url%5Bfile:common/decodeProduct.chain%5D",
-    title:
-      "Murder Your Employer: The McMasters Guide to Homicide (B&N Exclusive Edition)      ",
-    ratings: 5,
-    price: 22.99,
-    author: "by Rupert Holmes",
-    description:
-      "Murder Your Employer: The McMasters Guide to Homicide (B&N Exclusive Edition)  ",
-    category: "fiction",
-  },
-];
 function Cartpage() {
   const [prod, setProd] = React.useState([]);
   const [count, setCount] = React.useState(1);
 
+  //adding the price
   let sum = 0;
   let arr = [];
 
-  data.map((ele) => {
+  prod.map((ele) => {
     arr.push(ele.price);
   });
 
@@ -69,6 +33,34 @@ function Cartpage() {
     getProd();
   }, []);
 
+  let handleIncrement = async (id, price, quantity) => {
+    let res = await fetch(`http://localhost:8000/cart/update/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ quantity: quantity + 1 }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
+  let handleDecrement = async (id, price, quantity) => {
+    let res = await fetch(`http://localhost:8000/cart/update/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ quantity: quantity - 1 }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
   return (
     <>
       <div
@@ -81,11 +73,18 @@ function Cartpage() {
       >
         Free Shipping on Orders of $40 or More
       </div>
-      <div style={{ width: "80%", margin: "auto", marginTop: "40px" }}>
+      <div
+        style={{
+          dispaly: "flex",
+          width: "80%",
+          marginTop: "40px",
+          margin: "auto",
+        }}
+      >
         <div
           style={{
-            display: "flex",
             marginBottom: "40px",
+            // margin: "auto",
           }}
           className="container"
         >
@@ -146,11 +145,11 @@ function Cartpage() {
                   }}
                 >
                   {" "}
-                  ({data.length}) Items from Barnes & Noble
+                  ({prod.length}) Items from Barnes & Noble
                 </p>
-                {data.map((ele) => (
+                {prod.map((ele) => (
                   <div key={ele.id}>
-                    <div>
+                    <div key={ele.id}>
                       <p
                         style={{
                           fontWeight: "bold",
@@ -179,52 +178,41 @@ function Cartpage() {
                       </div>
                       <div style={{ display: "flex" }}>
                         {" "}
-                        <p style={{ marginRight: "10px", paddingTop: "8px" }}>
-                          ${ele.price}
+                        <p
+                          style={{
+                            marginRight: "10px",
+                            // paddingTop: "8px",
+                            fontSize: "16px",
+                            // padding: "3px 10px 4px 10px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          Price : ${ele.price}
                         </p>
                         <div
                           style={{
-                            paddingTop: "3px",
+                            // paddingTop: "3px",
                             height: "40px",
                             width: "80px",
-                            border: "1px solid grey",
+                            // border: "1px solid grey",
                             display: "flex",
                             justifyContent: "center",
+                            fontSize: "16px",
+                            fontWeight: "600",
                           }}
                         >
-                          <button
-                            style={{
-                              fontSize: "20px",
-                              // paddingLeft: "5px",
-                              // paddingRight: "5px",
-                              // border: "1px solid grey",
-                              textAlign: "left",
-                              fontWeight: "600",
-                            }}
-                          >
-                            -
-                          </button>
-                          <button
-                            style={{
-                              fontSize: "20px",
-                              padding: "3px 10px 4px 10px",
-                              fontWeight: "600",
-                            }}
-                          >
-                            {count}
-                          </button>
-
-                          <button
-                            style={{
-                              fontSize: "20px",
-                              fontWeight: "600",
-                            }}
-                          >
-                            +
-                          </button>
+                          Qnt : 1
                         </div>
-                        <p style={{ marginLeft: "10px", paddingTop: "8px" }}>
-                          ${ele.price * count}
+                        <p
+                          style={{
+                            marginLeft: "10px",
+                            // paddingTop: "8px",
+                            fontSize: "16px",
+                            // padding: "3px 10px 4px 10px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          Total Price : ${ele.price * count}
                         </p>
                       </div>
                     </div>
@@ -247,15 +235,20 @@ function Cartpage() {
               </div>
             </div>
           </div>
+
           <div
             style={{
-              border: "1px solid grey",
+              border: "1px solid red",
               width: "35%",
               marginLeft: "20px",
-              height: "650px",
+              height: "auto",
               padding: "20px 20px 10px 20px",
-              marginTop: "0px",
+              marginTop: "-1700px",
+              display: "grid",
+              justifyContent: "start",
+              // alignItems: "start",
             }}
+            className="right-container"
           >
             <div>
               <h3
@@ -269,7 +262,7 @@ function Cartpage() {
                 Order Summary
               </h3>
               <div
-                classNmae="subtotal"
+                className="subtotal"
                 style={{ display: "flex", marginBottom: "10px" }}
               >
                 <div style={{ width: "70%" }}>
@@ -280,11 +273,11 @@ function Cartpage() {
                 </div>
                 <div style={{ width: "30%", float: "right" }}>
                   {" "}
-                  <p>${sum}</p>
+                  <p>${sum.toFixed(2)}</p>
                 </div>
               </div>{" "}
               <div
-                classNmae="estimate"
+                className="estimate"
                 style={{ display: "flex", marginBottom: "10px" }}
               >
                 <div style={{ width: "70%" }}>
@@ -297,7 +290,7 @@ function Cartpage() {
                 </div>
               </div>{" "}
               <div
-                classNmae="estimate-tax"
+                className="estimate-tax"
                 style={{ display: "flex", marginBottom: "20px" }}
               >
                 <div style={{ width: "70%" }}>
@@ -311,7 +304,7 @@ function Cartpage() {
               </div>
               <hr></hr>
               <div
-                classNmae="order-total"
+                className="order-total"
                 style={{ display: "flex", marginTop: "15px" }}
               >
                 <div style={{ width: "70%" }}>
@@ -328,22 +321,24 @@ function Cartpage() {
                 <div
                   style={{ width: "30%", float: "right", fontWeight: "bold" }}
                 >
-                  <p>${sum + 36.94}</p>
+                  <p>${(sum + 36.94).toFixed(2)}</p>
                 </div>
               </div>
-              <button
-                style={{
-                  backgroundColor: "#346250",
-                  color: "white",
-                  marginTop: "20px",
-                  width: "100%",
-                  fontSize: "18px",
-                  paddingTop: "10px",
-                  paddingBottom: "10px",
-                }}
-              >
-                CHECKOUT
-              </button>
+              <Link to={"/payment"}>
+                <button
+                  style={{
+                    backgroundColor: "#346250",
+                    color: "white",
+                    marginTop: "20px",
+                    width: "100%",
+                    fontSize: "18px",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  CHECKOUT
+                </button>
+              </Link>
               <div style={{ fontSize: "12px", marginTop: "10px" }}>
                 Or Checkout With
               </div>

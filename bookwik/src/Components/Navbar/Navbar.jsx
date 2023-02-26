@@ -110,8 +110,10 @@ const Navbar = () => {
           </Box>
 
           <Hide breakpoint="(max-width: 770px)">
-            {" "}
-            <DrawerExample2 />{" "}
+            <Link to={"/cart"}>
+              {" "}
+              <DrawerExample2 />{" "}
+            </Link>
           </Hide>
         </Box>
         {/* Nav-mid ens Here */}

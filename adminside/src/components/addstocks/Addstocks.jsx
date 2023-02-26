@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import "./Addstocks.css"
 
 const Addstocks=()=>{
+    const navigate=useNavigate()
     const [title,settitle]=useState("")
     const [price,setprice]=useState("")
     const [rating,setrating]=useState("")
@@ -13,6 +15,7 @@ const Addstocks=()=>{
     
     
     const handlesubmit=()=>{
+        
         const bookadd={
            title:title,
            price:price,
@@ -25,17 +28,33 @@ const Addstocks=()=>{
         }
         console.log(bookadd);
 
-        fetch("http://localhost:8000/books/post",{
+        fetch("http://localhost:8000/kitab/post",{
             method:"POST",
             body:JSON.stringify(bookadd),
             headers:{
-                "Content-type":"application/json"
-            }
+                "Content-type":"application/json",
+                "Authorization":localStorage.getItem("token")
+                    
+}
         }).then(res=>res.json())
         .then(res=>
             {
+                if(res.msg==="You are not admin")
+                {
+                    alert(res.msg)
+                    navigate("/")
+                }
+                else{
                 console.log(res)
                 alert(res.msg)
+                settitle("")
+                setprice("")
+                setrating("")
+                setcategory("")
+                setauthor("")
+                setdesc("")
+                setimage("")
+                }
             })
         .catch(err=>console.log(err))
     }
@@ -43,6 +62,7 @@ const Addstocks=()=>{
         <>
         <Navbar/>
        <h1 className="allusers_admin_dashboard_page">Add Books</h1>
+       
        <div className="addstocks_dashboard_admin_side">
        <input type="text" placeholder="Enter Title" value={title} onChange={(e)=>settitle(e.target.value)} /><br />
        <input type="number" placeholder="Enter Price" value={price} onChange={(e)=>setprice(e.target.value)}  /><br />

@@ -6,6 +6,7 @@ import {RiDeleteBin5Fill} from "react-icons/ri"
 import "./Allusers.css"
 
 const Allusers=()=>{
+  const usersdata=localStorage.getItem("allusers") 
   const navigate=useNavigate()
     const [users,setusers]=useState([])
 
@@ -47,9 +48,17 @@ const getdata=()=>{
       }).then(res=>res.json())
       .then(res=>
         {
-          console.log(res)
-          alert(res.msg)
-          getdata()
+          if(res.msg==="You are not admin")
+          {
+              alert(res.msg)
+              navigate("/")
+          }
+          else{
+            console.log(res)
+            alert(res.msg)
+            getdata()
+          }
+          
         })
       .catch(err=>console.log(err))
   }
@@ -58,7 +67,8 @@ const getdata=()=>{
     return(
         <>
          <Navbar/>
-        <h1 className="allusers_admin_dashboard_page">All users page</h1>
+        {/* <h1 className="allusers_admin_dashboard_page">All users page</h1> */}
+        <h1 className="allusers_admin_dashboard_page">All Users:- {usersdata}</h1>
         <div className="admin_allusers_table_side">
        <table width="100%">
       <thead>

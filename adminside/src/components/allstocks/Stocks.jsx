@@ -4,14 +4,16 @@ import Navbar from "../Navbar/Navbar";
 import "./Stocks.css"
 import {RxUpdate} from "react-icons/rx"
 import {RiDeleteBin5Line} from "react-icons/ri"
+import Gototop from "../topscroller/Gototop";
 
 const Stocks=()=>{
+  const products=localStorage.getItem("allproducts")
     const navigate=useNavigate()
     const [books,setbooks]=useState([])
 
     //get all books
 const getbook=()=>{
-    fetch("http://localhost:8000/books/",{
+    fetch("http://localhost:8000/kitab/getdata",{
         headers:{
          "Authorization":localStorage.getItem("token")
          }
@@ -38,7 +40,7 @@ const getbook=()=>{
      //delete books
      const deletebook=(bookID)=>{
         console.log(bookID);
-        fetch(`http://localhost:8000/books/delete/${bookID}`,{
+        fetch(`http://localhost:8000/kitab/delete/${bookID}`,{
             method:"DELETE",
            headers:{
             "Authorization":localStorage.getItem("token")
@@ -46,9 +48,16 @@ const getbook=()=>{
         }).then(res=>res.json())
         .then(res=>
           {
+            if(res.msg==="You are not admin")
+            {
+                alert(res.msg)
+                navigate("/")
+            }
+            else{
             console.log(res)
             alert(res.msg)
             getbook()
+            }
           })
         .catch(err=>console.log(err))
     }
@@ -60,8 +69,9 @@ const getbook=()=>{
     return(
         <>
          <Navbar/>
-        <h1 className="allusers_admin_dashboard_page">All Books</h1>
-        <input type="text" placeholder="Search Here" />
+        {/* <h1 className="allusers_admin_dashboard_page">All Books</h1> */}
+        <h1 className="allusers_admin_dashboard_page">All Stocks:- {products}</h1>
+        {/* <input type="text" placeholder="Search Here" /> */}
         <div className="admin_allusers_table_side">
         <table width="100%">
         <thead>
@@ -101,6 +111,7 @@ const getbook=()=>{
  </tbody>
     </table>
     </div>
+    <Gototop/>
         </>
     )
 }

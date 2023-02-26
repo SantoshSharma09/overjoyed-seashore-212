@@ -71,7 +71,10 @@ function Payment() {
 
               <div class="inputBox">
                 <span>Cards Accepted :</span>
-                <img src={img1} alt="" />
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  {" "}
+                  <img src={img1} alt="" />
+                </div>
               </div>
               <div class="inputBox">
                 <span>Name on Card :</span>

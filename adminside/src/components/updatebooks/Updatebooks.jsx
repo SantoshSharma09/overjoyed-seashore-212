@@ -20,16 +20,22 @@ const Updatebooks=()=>{
     const oninputchange=(e)=>{
         setbooks({...books,[e.target.name]:e.target.value})
     }
+
+    //updated
     const updateboks =() => {
-        console.log(`http://localhost:8000/books/update/${id}`)
-        console.log(books)
+       axios.patch(`http://localhost:8000/kitab/update/${id}`, books);
+        alert("Data Updated")
+          console.log(books)
+           navigate("/stocks")
+    }
+      
        
-        axios.put(`http://localhost:8000/books/update/${id}`, books)
-        .then(res=>console.log(res))
-        .catch(err=>console.log(err))
+        // axios.patch(`http://localhost:8000/kitab/update/${id}`, books)
+        // .then(res=>console.log(res))
+        // .catch(err=>console.log(err))
     //    navigate("/stocks")
 
-    // fetch(`http://localhost:8000/books/update/${id}`,{
+    // fetch(`http://localhost:8000/kitab/update/${id}`,{
     //         method:"PATCH",
     //         body:JSON.stringify(books),
     //         headers:{
@@ -44,10 +50,12 @@ const Updatebooks=()=>{
     //             // navigate("/stocks")
     //         })
     //     .catch(err=>console.log(err))
-      };
 
+
+      
+   //get data for updation
     const loadUser =  () => {
-        fetch(`http://localhost:8000/books/${id}`,{
+        fetch(`http://localhost:8000/kitab/${id}`,{
                 method: "GET",
                 headers:{
                 "Authorization":localStorage.getItem("token")
@@ -68,47 +76,27 @@ const Updatebooks=()=>{
                         description:res.description,
                         image:res.image
       });
-                })
-              .catch(err=>console.log(err))
-            
-      
-    };
+     })
+     .catch(err=>console.log(err))
+      };
+
     useEffect(() => {
         loadUser();
       }, []);
+
      
     return(
         <>
         <Navbar/>
         <h1 className="allusers_admin_dashboard_page">Update Stocks</h1>
        <div className="addstocks_dashboard_admin_side">
-       <input type="text" placeholder="Enter Title" name="title" 
-              value={title}
-              onChange={oninputchange}
-              /><br />
-       <input type="number" placeholder="Enter Price" name="price"
-              value={price}
-              onChange={oninputchange} /><br />
-       <input type="number" placeholder="Enter Rating" name="ratings"
-        value={ratings}
-       onChange={oninputchange}/><br />
-       <input type="text" placeholder="Enter Category" 
-       name="category"
-       value={category}
-       onChange={oninputchange}  /><br />
-       <input type="text" placeholder="Enter Author" 
-       name="author"
-       value={author}
-       onChange={oninputchange}  
-        /><br />
-       <input type="text" placeholder="Enter Description" 
-       name="description"
-       value={description}
-       onChange={oninputchange}  /><br />
-       <input type="url" placeholder="Enter Image Url"
-       name="image"
-       value={image}
-       onChange={oninputchange} /><br />
+       <input type="text" placeholder="Enter Title" name="title" value={title} onChange={e=>oninputchange(e)}/><br />
+       <input type="number" placeholder="Enter Price" name="price" value={price} onChange={e=>oninputchange(e)} /><br />
+       <input type="number" placeholder="Enter Rating" name="ratings" value={ratings} onChange={e=>oninputchange(e)}/><br />
+       <input type="text" placeholder="Enter Category" name="category" value={category} onChange={e=>oninputchange(e)} /><br />
+       <input type="text" placeholder="Enter Author"  name="author" value={author} onChange={e=>oninputchange(e)} /><br />
+       <input type="text" placeholder="Enter Description" name="description"  value={description} onChange={e=>oninputchange(e)} /><br />
+       <input type="url" placeholder="Enter Image Url" name="image" value={image} onChange={e=>oninputchange(e)} /><br />
        <button className="addstocks_button_admin_dashboard" onClick={updateboks} >Update</button>
        </div>
         </>

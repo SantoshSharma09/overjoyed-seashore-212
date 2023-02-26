@@ -1,6 +1,6 @@
 const express=require("express")
 const { BookModel } = require("../modals/book.modal")
-
+const {adminauthenticate}=require("../middleware/adminauth.middlrware")
 
 
 const bookRouter=express.Router()
@@ -20,6 +20,8 @@ bookRouter.get("/", async(req,res)=>{
   
 })
 
+
+
 //get single products 
 bookRouter.get("/:id",async(req,res)=>{
    let num = req.params.id;
@@ -34,13 +36,13 @@ bookRouter.get("/:id",async(req,res)=>{
 })
 
 
+
+
+
+
+
 //add book data
-
-
-
-
-
-bookRouter.post("/post",async(req,res)=>{
+bookRouter.post("/post", adminauthenticate ,async(req,res)=>{
 try{
 
     let users= new BookModel(req.body);
@@ -130,7 +132,7 @@ bookRouter.patch("/update/:id",async(req,res)=>{
 
 
 //delete book data
-bookRouter.delete("/delete/:id",async (req,res)=>{
+bookRouter.delete("/delete/:id", adminauthenticate, async (req,res)=>{
    const ID=req.params.id
    // res.send(ID)
   try

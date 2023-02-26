@@ -15,7 +15,7 @@ const Navbar = () => {
             <Show breakpoint="(max-width: 770px)">
               <DrawerExample />
             </Show>
-            <Link to="/books" >
+            <Link to="/books">
               {" "}
               <span style={{ display: "flex", gap: "5px" }}>
                 {" "}
@@ -99,8 +99,10 @@ const Navbar = () => {
           </Box>
 
           <Hide breakpoint="(max-width: 770px)">
-            {" "}
-            <DrawerExample2 />{" "}
+            <Link to={"/cart"}>
+              {" "}
+              <DrawerExample2 />{" "}
+            </Link>
           </Hide>
         </Box>
         {/* Nav-mid ens Here */}

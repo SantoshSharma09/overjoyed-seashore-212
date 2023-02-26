@@ -92,7 +92,7 @@ userrouter.get("/", adminauthenticate,  async(req,res)=>{
   }
 
   catch(err){
-      res.send({"msg":"cannot get the notes data", "error":err.message})
+      res.send({"msg":"cannot get the users data", "error":err.message})
 }
 })
 

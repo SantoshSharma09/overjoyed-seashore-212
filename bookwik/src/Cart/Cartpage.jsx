@@ -21,7 +21,7 @@ function Cartpage() {
   //Fetching the data:
   const getProd = () => {
     axios
-      .get(`http://localhost:8000/cart`)
+      .get(`https://real-blue-cormorant-cap.cyclic.app/cart`)
       .then((res) => {
         console.log(res.data);
         setProd(res.data);
@@ -59,6 +59,14 @@ function Cartpage() {
       .then((res) => {
         console.log(res);
       });
+  };
+
+  const handleDelete = (id) => {
+    console.log(id);
+    let res = axios
+      .delete(`http://localhost:8000/cart/delete/${id}`)
+      .then(() => setProd(res));
+    getProd();
   };
 
   return (
@@ -223,7 +231,9 @@ function Cartpage() {
                         margin: "20px",
                       }}
                     >
-                      <button>Remove</button>
+                      <button onClick={() => handleDelete(ele.id)}>
+                        Remove
+                      </button>
                     </div>
                     <div style={{ marginBottom: "20px", fontSize: "13px" }}>
                       Choose Int'l Express*** at checkout for delivery by

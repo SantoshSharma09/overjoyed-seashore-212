@@ -58,6 +58,7 @@ const Navbar = () => {
             <Hide below="md">
               <AccountMenu />
             </Hide>
+
             <span style={{ display: "flex", gap: "5px" }}>
               {" "}
               <img
@@ -67,9 +68,15 @@ const Navbar = () => {
               />{" "}
               <Hide breakpoint="(max-width: 770px)"> WISHLIST</Hide>
             </span>
-            <span>
-              {usertoken ? <Button onClick={handleLogout}>Logout</Button> : ""}
-            </span>
+            <Hide breakpoint="(max-width: 770px)">
+              <span style={{ width: "10%" }}>
+                {usertoken ? (
+                  <Button onClick={handleLogout}>Logout</Button>
+                ) : (
+                  ""
+                )}
+              </span>
+            </Hide>
             <Show breakpoint="(max-width: 770px)">
               <DrawerExample2 />
             </Show>
@@ -123,9 +130,7 @@ const Navbar = () => {
         {/* Nav-mid ens Here */}
         {/* Nav-bottom starts here */}
         <Box id="Nav-bottom">
-
           <Link to="/kitabpage">
-
             {" "}
             <span>Books</span>{" "}
           </Link>

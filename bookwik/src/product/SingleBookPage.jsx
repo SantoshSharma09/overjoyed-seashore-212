@@ -14,6 +14,7 @@ import React from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { TiTick } from "react-icons/ti";
 import "./singleBook.css";
+import { Link } from "react-router-dom";
 
 const SingleBookPage = () => {
   //Toast:
@@ -30,7 +31,7 @@ const SingleBookPage = () => {
   //Getting Single book:
   const getSingleBook = () => {
     axios
-      .get(`http://localhost:8000/kitab/${id}`)
+      .get(`https://real-blue-cormorant-cap.cyclic.app/kitab/${id}`)
       .then((res) => {
         // console.log(res);
         setBook(res.data);
@@ -46,7 +47,7 @@ const SingleBookPage = () => {
   // let token = localStorage.getItem("user_token");
 
   const handleCart = () => {
-    fetch("http://localhost:8000/cart/addtocart", {
+    fetch("https://real-blue-cormorant-cap.cyclic.app/cart/addtocart", {
       method: "POST",
       body: JSON.stringify({
         title: book.title,
@@ -70,15 +71,16 @@ const SingleBookPage = () => {
           console.log(res);
         } else {
           console.log(res);
-          // alert(res.Msg);
-          toast({
-            position: "top",
-            title: "Successfull",
-            description: "Added to Cart",
-            status: "success",
-            duration: 3000,
-            isClosable: true,
-          });
+          alert(res.Msg);
+          navigate("/cart");
+          // toast({
+          //   position: "top",
+          //   title: "Successfull",
+          //   description: "Added to Cart",
+          //   status: "success",
+          //   duration: 3000,
+          //   isClosable: true,
+          // });
         }
       })
       .catch((err) => console.log(err));
@@ -237,38 +239,40 @@ const SingleBookPage = () => {
             {book.description}
           </Text>
           <br />
-          <div>
-            {click ? (
-              <Button
-                id="book_cart_button"
-                onClick={handleCart}
-                style={{
-                  width: "150px",
-                  borderRadius: "10px",
-                  color: "white",
-                  backgroundColor: "coral",
-                }}
-                _hover={{ transform: "scale(1.1)" }}
-                isDisabled={click}
-              >
-                Add to Cart
-              </Button>
-            ) : (
-              <Button
-                id="book_cart_button"
-                onClick={handleCart}
-                style={{
-                  width: "150px",
-                  borderRadius: "10px",
-                  color: "white",
-                  backgroundColor: "coral",
-                }}
-                _hover={{ transform: "scale(1.1)" }}
-              >
-                Add to Cart
-              </Button>
-            )}
-          </div>
+          <Link to={"/cart"}>
+            <div>
+              {click ? (
+                <Button
+                  id="book_cart_button"
+                  onClick={handleCart}
+                  style={{
+                    width: "150px",
+                    borderRadius: "10px",
+                    color: "white",
+                    backgroundColor: "coral",
+                  }}
+                  _hover={{ transform: "scale(1.1)" }}
+                  isDisabled={click}
+                >
+                  Add to Cart
+                </Button>
+              ) : (
+                <Button
+                  id="book_cart_button"
+                  onClick={handleCart}
+                  style={{
+                    width: "150px",
+                    borderRadius: "10px",
+                    color: "white",
+                    backgroundColor: "coral",
+                  }}
+                  _hover={{ transform: "scale(1.1)" }}
+                >
+                  Add to Cart
+                </Button>
+              )}
+            </div>
+          </Link>
         </Box>
       </SimpleGrid>
     </Box>

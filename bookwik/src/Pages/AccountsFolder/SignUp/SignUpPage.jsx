@@ -39,7 +39,7 @@ const SignUpPage = () => {
       security_answer:sa
   }
     console.log(reg)
-    fetch("http://localhost:8000/users/register",{
+    fetch("https://real-blue-cormorant-cap.cyclic.app/users/register",{
             method:"POST",
             body:JSON.stringify(reg),
             headers:{

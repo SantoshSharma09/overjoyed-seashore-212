@@ -23,7 +23,7 @@ const Register=()=>{
         }
         console.log(reg);
 
-        fetch("http://localhost:8000/users/register",{
+        fetch("https://real-blue-cormorant-cap.cyclic.app/users/register",{
             method:"POST",
             body:JSON.stringify(reg),
             headers:{

@@ -19,7 +19,7 @@ const Login=()=>{
         }
         // console.log(reg);
 
-        fetch("http://localhost:8000/users/login",{
+        fetch("https://real-blue-cormorant-cap.cyclic.app/users/login",{
             method:"POST",
             body:JSON.stringify(reg),
             headers:{

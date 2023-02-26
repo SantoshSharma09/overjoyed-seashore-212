@@ -1,7 +1,7 @@
 const express = require("express")
 require('dotenv').config()
 const { connection } = require("./db")
-//const {bookRouter}=require("./routes/book.route")
+const {bookRouter}=require("./routes/book.route")
 const { userrouter } = require("./routes/user.route")
 const { cartRouter } = require("./routes/cart.route")
 const cors = require("cors")
@@ -16,8 +16,8 @@ app.use(cors({
 
 app.use("/users", userrouter)
 app.use("/kitab", Bookrouter)
-//app.use("/books",bookRouter)
-//app.use(middleware)
+app.use("/books",bookRouter)
+
 app.use("/cart", cartRouter)
 
 

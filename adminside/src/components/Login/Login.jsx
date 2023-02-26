@@ -31,10 +31,22 @@ const Login=()=>{
             {
                 console.log(res)
                 console.log(email)
-                alert(res.msg)
+                if(res.msg==="login success")
+                {
+                 alert(res.msg)
                 localStorage.setItem("token",res.token)
                 localStorage.setItem("admin_email",email)
+                setemail("")
+                setpassword("")
                 navigate("/dashboard")
+                }
+               else{
+                alert(res.msg)
+                setemail("")
+                setpassword("")
+                navigate("/")
+               }
+                
 })
         .catch(err=>console.log(err))
     }

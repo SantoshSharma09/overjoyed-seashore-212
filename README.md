@@ -64,35 +64,47 @@ We made this project within 5 days
 <br />
 
 
-## Glimpses of Nykaa-Clone :
+## Glimpses of Bookwik.com :
 <table>
   <tr>
-    <td><img src="https://i.ibb.co/CQk0R2T/nykaa.png"  alt="home" /></td>
+    <td><img src="https://user-images.githubusercontent.com/109049556/221469575-0f33dab2-0611-4792-ae11-4dbfbaa414e2.PNG"  alt="home" /></td>
   </tr>
   <br/>
   <tr>
-    <td><img src="https://i.ibb.co/JCPsB54/nykaa2.png"  alt="" /></td>
+    <td><img src="https://user-images.githubusercontent.com/109049556/221469982-d93d8c3b-cbb0-4a24-bd25-a5f89668c2bb.PNG"  alt="" /></td>
   </tr>
   <br/>
   <tr>
-    <td><img src="https://i.ibb.co/fNTNsNJ/nykaa3.png"  alt="" /></td>
+    <td><img src="https://user-images.githubusercontent.com/109049556/221470073-56912f8a-cb3a-4094-a974-107b31ae0d04.PNG"  alt="" /></td>
   </tr>
   <br/>
    <tr>
-    <td><img src="https://i.ibb.co/JChmGKf/nykaa4.png"   alt="" /></td>
+    <td><img src="https://user-images.githubusercontent.com/109049556/221470139-b65917b8-489f-457f-8e23-5b05ab3573ea.PNG"   alt="" /></td>
   </tr>
   <br/>
   <tr>
-    <td><img src="https://i.ibb.co/ZWjjmL0/nykaa5.png"  alt="" /></td>
+    <td><img src="https://user-images.githubusercontent.com/109049556/221470189-0209c77d-7c33-4480-8aae-c895f8aec1c8.PNG"  alt="" /></td>
   </tr>
   <br/>
    <tr>
-    <td><img src="https://i.ibb.co/RPbBcVp/nykaa6.png"   alt="" /></td>
+    <td><img src="https://user-images.githubusercontent.com/109049556/221470291-0ad5a6a4-6b88-4bca-bed4-1e265630ca10.PNG"   alt="" /></td>
   </tr>
   <br/>
   <br/>
    <tr>
-    <td><img src="https://i.ibb.co/WK7FsMF/nykaa7.png"   alt="" /></td>
+    <td><img src="https://user-images.githubusercontent.com/109049556/221470328-09baa2dd-50b5-4317-801c-9baf65e7c07d.PNG"   alt="" /></td>
+  </tr>
+  <br/>
+   <tr>
+    <td><img src="https://user-images.githubusercontent.com/109049556/221470423-c7311b72-da3a-42b3-a40b-fc9a7ba906aa.PNG"   alt="" /></td>
+  </tr>
+  <br/>
+    <tr>
+    <td><img src="https://user-images.githubusercontent.com/109049556/221470870-ea73a76b-0e75-479b-af59-285190094e56.PNG"   alt="" /></td>
+  </tr>
+  <br/>
+      <tr>
+    <td><img src="https://user-images.githubusercontent.com/109049556/221471003-4d877b60-128d-40e3-b5dd-f48638d8f713.PNG"   alt="" /></td>
   </tr>
   <br/>
 

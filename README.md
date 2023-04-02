@@ -64,10 +64,10 @@ We made this project within 5 days
 <br />
 
 
-## Glimpses of Bookwik.com :
+## Glimpses of CVAAK.com :
 <table>
   <tr>
-    <td><img src="https://user-images.githubusercontent.com/109049556/221469575-0f33dab2-0611-4792-ae11-4dbfbaa414e2.PNG"  alt="home" /></td>
+    <td><img src="https://user-images.githubusercontent.com/107903370/229373136-54efcca0-f011-4eab-aee3-7d0d2a4c6a45.png"  alt="home" /></td>
   </tr>
   <br/>
   <tr>
@@ -126,8 +126,8 @@ This project was built using React, Chakra UI, HTML, CSS, JavaScript, MongoDB, E
 If you want to contact us, you can reach me through below handles. <br />
 
 
-[![linkedin](https://img.shields.io/badge/Rajesh_Kumar-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rajeshdeo/)
-[![GitHub](https://img.shields.io/badge/Rajesh_Kumar-0077B5?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/rajeshdeo)
+[![linkedin](https://img.shields.io/badge/Varun_Ergurala-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/varun/)
+[![GitHub](https://img.shields.io/badge/Varun_Ergurala-0077B5?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/rajeshdeo)
 
 [![linkedin](https://img.shields.io/badge/Chandra_Sekhar-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://github.com/Gedelachandrasekhar126396)
 [![GitHub](https://img.shields.io/badge/Chandra_Sekhar-0077B5?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/Gedelachandrasekhar126396)
